@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-primary: #c0392b;
+  --color-secondary: #E63946;
+  --color-background: #f4f4f4;
+  --color-accent: #2ecc71;
+  --font-primary: 'Poppins', sans-serif;
+  --font-size-base: 16px;
+  --line-height: 1.5;
+  --spacing-small: 14px;
+  --spacing-medium: 18px;
+  --spacing-large: 32px;
+}
+
+body {
+  background-color: var(--color-background);
+  color: #333;
+  font-family: var(--font-primary);
+  font-size: var(--spacing-medium);
+  line-height: var(--line-height);
+}
+
+h1, h2, h3 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  background: var(--color-secondary);
+  color: var(--color-background);
+}
+
+/* Layout */
+.menu-item-container, .sides-section, .drinks-section, .sauces-section {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.button {
+  background-color: var(--color-primary);
+  border-radius: 4px;
+  color: white;
+  display: inline-block;
+  padding: var(--spacing-small) var(--spacing-medium);
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: var(--color-secondary);
+}
+
+/* Header & Navbar */
+.header-container {
+  align-items: center;
+  border: 1px solid orange;
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  justify-content: space-between;
+  padding: 2% 5%;
+}
+
+.logo img {
+  border-radius: 50%;
+  height: 100px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.header-container h1 {
+  font-size: calc(.7rem + 2vw);
+  text-transform: uppercase;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+}
+.main-nav ul li {
+  margin-right: 1rem;
+}
+
+.main-nav ul li a {
+  border: 1px solid #FF6F61  ;
+  border-radius: 6%;
+  font-size: var(--spacing-medium);
+  font-weight: bold;
+  padding: 20px 10px;
+}
+
+/* Hero Section */
+.hero-section {
+  align-items: center;
+  /* background-image: url('img/burguers/combo-especial.jpeg'); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: fill;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  justify-content: center;
+  margin-bottom: 4rem;
+  text-transform: uppercase;
+}
+
+.hero-section h2 {
+  background-color: var(--color-background);
+  font-size: var(--spacing-large);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.hero-section p {
+  background-color: var(--color-background);
+  font-size: var(--spacing-medium);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Menu Section */
+.menu-title {
+  font-size: var(--spacing-large);
+  margin-bottom: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.menu-item-container {
+  /* border: 1px solid red; */
+  width: 80%;
+  margin: 0 auto;
+}
+
+.menu-item {
+  /* border: 1px solid orange; */
+  height: auto;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.menu-item img {
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  height: 250px;
+  object-fit: cover;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+}
+
+.menu-item h3 {
+  /* border: 1px solid #00ffd5; */
+  line-height: 1;
+  font-size: calc(var(--spacing-medium) - 2px + 1vw);
+  height: 100px;
+}
+
+.menu-item p {
+  /* border: 1px solid salmon; */
+  font-size: var(--spacing-medium);
+}
+
+.menu-item .description {
+  /* border: 1px solid blue; */
+  margin-bottom: 4rem;
+}
+
+.menu-item a {
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
+/* Sides Section */
+.sides-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.sides-section .sides-title {
+  margin-top: 6rem;
+  margin-bottom: -1rem;
+  font-size: var(--spacing-large);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.sides-section .sides-subtitle {
+  font-size: calc(var(--spacing-medium) - 1rem + 1vw);
+  text-align: center;
+}
+
+/* Drinks Section */
+.drinks-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.drinks-section .drinks-title {
+  margin-top: 6rem;
+  margin-bottom: -1rem;
+  font-size: var(--spacing-large);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.drinks-section .drinks-subtitle {
+  font-size: calc(var(--spacing-medium) - 1rem + 1vw);
+  text-align: center;
+}
+
+.drinks-section .menu-item-container {
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas como padrão */
+}
+
+/* Sauces Section */
+
+.sauces-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.sauces-section .sauces-title {
+  margin-top: 6rem;
+  margin-bottom: -1rem;
+  font-size: var(--spacing-large);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.sauces-section .sauces-subtitle {
+  font-size: calc(var(--spacing-medium) - 1rem + 1vw);
+  text-align: center;
+}
+
+.sauces-section .menu-item-container {
+  grid-template-columns: repeat(2, 1fr); /* 2 colunas como padrão */
+}
+
+/* Footer */
+.footer {
+  background: #cd7f32;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 6rem;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+.footer-social a {
+  color: var(--color-background);
+  margin: 0 10px;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.footer-social a:hover {
+  opacity: 0.7;
+}
+
+.footer-legal {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media screen and (max-width: 1320px) {
+  /* Menu Section */
+  .menu-item-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sides-section .menu-item-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .menu-item-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .drinks-section .menu-item-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menu-item-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .sides-section .menu-item-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .drinks-section .menu-item-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .sauces-section .menu-item-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
