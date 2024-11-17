@@ -8,15 +8,15 @@
 }
 
 :root {
+  --color-accent: #2ecc71;
+  --color-background: #f4f4f4;
   --color-primary: #c0392b;
   --color-secondary: #E63946;
-  --color-background: #f4f4f4;
-  --color-accent: #2ecc71;
   --font-primary: 'Poppins', sans-serif;
   --font-size-base: 16px;
   --line-height: 1.5;
   --spacing-small: 14px;
-  --spacing-medium: 18px;
+  --spacing-medium: 22px;
   --spacing-large: 32px;
 }
 
@@ -71,7 +71,6 @@ a:hover {
 /* Header & Navbar */
 .header-container {
   align-items: center;
-  border: 1px solid orange;
   display: flex;
   font-family: 'Montserrat', sans-serif;
   justify-content: space-between;
@@ -90,16 +89,20 @@ a:hover {
   text-transform: uppercase;
 }
 
+.menu-toggle {
+  display: none;
+}
+
 .main-nav ul {
   display: flex;
   list-style: none;
 }
+
 .main-nav ul li {
   margin-right: 1rem;
 }
 
 .main-nav ul li a {
-  border: 1px solid #FF6F61  ;
   border-radius: 6%;
   font-size: var(--spacing-medium);
   font-weight: bold;
@@ -142,13 +145,11 @@ a:hover {
 }
 
 .menu-item-container {
-  /* border: 1px solid red; */
-  width: 80%;
   margin: 0 auto;
+  width: 80%;
 }
 
 .menu-item {
-  /* border: 1px solid orange; */
   height: auto;
   margin-bottom: 2rem;
   max-width: 100%;
@@ -169,25 +170,22 @@ a:hover {
 }
 
 .menu-item h3 {
-  /* border: 1px solid #00ffd5; */
-  line-height: 1;
   font-size: calc(var(--spacing-medium) - 2px + 1vw);
   height: 100px;
+  line-height: 1;
 }
 
 .menu-item p {
-  /* border: 1px solid salmon; */
   font-size: var(--spacing-medium);
 }
 
 .menu-item .description {
-  /* border: 1px solid blue; */
   margin-bottom: 4rem;
 }
 
 .menu-item a {
-  left: 0;
   bottom: 0;
+  left: 0;
   position: absolute;
   width: 100%;
 }
@@ -199,10 +197,10 @@ a:hover {
 }
 
 .sides-section .sides-title {
-  margin-top: 6rem;
-  margin-bottom: -1rem;
-  font-size: var(--spacing-large);
   text-align: center;
+  font-size: var(--spacing-large);
+  margin-bottom: -1rem;
+  margin-top: 6rem;
   text-transform: uppercase;
 }
 
@@ -218,20 +216,20 @@ a:hover {
 }
 
 .drinks-section .drinks-title {
-  margin-top: 6rem;
-  margin-bottom: -1rem;
   font-size: var(--spacing-large);
+  margin-bottom: -1rem;
+  margin-top: 6rem;
   text-align: center;
   text-transform: uppercase;
 }
 
 .drinks-section .drinks-subtitle {
-  font-size: calc(var(--spacing-medium) - 1rem + 1vw);
   text-align: center;
+  font-size: calc(var(--spacing-medium) - 1rem + 1vw);
 }
 
 .drinks-section .menu-item-container {
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas como padrão */
+  grid-template-columns: repeat(3, 1fr);
 }
 
 /* Sauces Section */
@@ -242,10 +240,10 @@ a:hover {
 }
 
 .sauces-section .sauces-title {
+  text-align: center;
+  font-size: var(--spacing-large);
   margin-top: 6rem;
   margin-bottom: -1rem;
-  font-size: var(--spacing-large);
-  text-align: center;
   text-transform: uppercase;
 }
 
@@ -255,7 +253,7 @@ a:hover {
 }
 
 .sauces-section .menu-item-container {
-  grid-template-columns: repeat(2, 1fr); /* 2 colunas como padrão */
+  grid-template-columns: repeat(2, 1fr);
 }
 
 /* Footer */
@@ -295,7 +293,11 @@ a:hover {
 
 /* Responsive */
 @media screen and (max-width: 1320px) {
-  /* Menu Section */
+  .hero-section {
+    margin: 0 auto;
+    width: 80%;
+  }
+
   .menu-item-container {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -306,29 +308,155 @@ a:hover {
 }
 
 @media screen and (max-width: 1000px) {
-  .menu-item-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .drinks-section .menu-item-container {
+  .menu-item-container,
+  .drinks-section .menu-item-container  {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media screen and (max-width: 768px) {
-  .menu-item-container {
-    grid-template-columns: repeat(1, 1fr);
+@media screen and (max-width: 788px) {
+  .header-container h1 {
+    display: none;
   }
 
-  .sides-section .menu-item-container {
-    grid-template-columns: repeat(1, 1fr);
+  .hero-section, .sides-subtitle, .drinks-subtitle, .sauces-subtitle {
+    display: none;
   }
 
-  .drinks-section .menu-item-container {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
+  .menu-item-container, 
+  .sides-section .menu-item-container, 
+  .drinks-section .menu-item-container, 
   .sauces-section .menu-item-container {
     grid-template-columns: repeat(1, 1fr);
+  }
+  
+  .header-container h1 {
+    font-size: 1rem;
+  }
+  
+  .hero-section {
+    height: auto;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  .menu-toggle {
+    background: var(--color-primary);
+    border: none;
+    border-radius: 40%;
+    display: block;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+  
+    .main-nav ul {
+    align-items: center;
+    background-color: var(--color-background);
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    left: 0;
+    padding: 3rem;
+    position: absolute;
+    top: 22%;
+    width: 100%;
+    z-index: 999;
+  }
+  
+  .main-nav ul.show {
+    display: flex;
+  }
+
+  .menu-list li:nth-child(2) {
+    padding: 3rem 0;
+  }
+
+  .main-nav ul li a {
+    border: none;
+    font-size: var(--spacing-medium);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  } 
+}
+
+@media screen and (max-width: 500px) {
+  .menu-title,
+  .sides-section .sides-title,
+  .drinks-section .drinks-title,
+  .sauces-section .sauces-title {
+    font-size: 1.3rem;
+  }
+
+  .menu-section img,
+  .sides-section img,
+  .drinks-section img,
+  .sauces-section img {
+    height: 150px;
+  }
+
+  .menu-item h3 {
+    font-size: 1.2rem;
+    height: 30px;
+  }
+
+  .menu-item p {
+    font-size: 1rem;
+    margin-bottom: .3rem;
+  }
+
+  .menu-item .description {
+    font-size: .9rem;
+  }
+
+  .menu-item .button {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+
+  .main-nav ul {
+    height: 80%;
+    top: 20%;
+  }
+
+  .footer {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
+
+/* Animação para abrir o menu */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animação para fechar o menu */
+.fade-out {
+  animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
   }
 }
