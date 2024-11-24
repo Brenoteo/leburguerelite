@@ -1,51 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --color-accent: #2ecc71;
-  --color-background: #f4f4f4;
-  --color-primary: #c0392b;
-  --color-secondary: #E63946;
-  --font-primary: 'Poppins', sans-serif;
-  --font-size-base: 16px;
-  --line-height: 1.5;
-  --spacing-small: 14px;
-  --spacing-medium: 22px;
-  --spacing-large: 32px;
-}
-
-body {
-  background-color: var(--color-background);
-  color: #333;
-  font-family: var(--font-primary);
-  font-size: var(--spacing-medium);
-  line-height: var(--line-height);
-}
-
-h1, h2, h3 {
-  font-weight: bold;
-}
-
-h1 {
-  font-size: 2rem;
-}
-
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  background: var(--color-secondary);
-  color: var(--color-background);
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&family=Poppins:wght@100;400;700&display=swap');
 
 /* Layout */
 .menu-item-container, .sides-section, .drinks-section, .sauces-section {
@@ -66,6 +19,9 @@ a:hover {
 
 .button:hover {
   background-color: var(--color-secondary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  transition: all 0.3s ease;
 }
 
 /* Header & Navbar */
@@ -85,12 +41,27 @@ a:hover {
 }
 
 .header-container h1 {
-  font-size: calc(.7rem + 2vw);
+  background: linear-gradient(90deg, #c0392b, #e63946);
+  color: #333;
+  font-family: 'Playfair Display', serif;
+  font-size: calc(.8rem + 2vw);
   text-transform: uppercase;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .menu-toggle {
+  background: none;
+  border: none;
+  color: #c0392b;
+  cursor: pointer;
   display: none;
+  font-size: 1.5rem;
+}
+
+.menu-list {
+  display: block;
+  list-style: none;
 }
 
 .main-nav ul {
@@ -103,37 +74,41 @@ a:hover {
 }
 
 .main-nav ul li a {
-  border-radius: 6%;
-  font-size: var(--spacing-medium);
+  font-size: 1rem;
   font-weight: bold;
-  padding: 20px 10px;
+  padding: 10px 15px;
+  color: #333;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.main-nav ul li a:hover {
+  background-color: #c0392b;
+  border-radius: 5px;
+  color: #fff;
 }
 
 /* Hero Section */
+.hero-section .overlay {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  max-width: 600px;
+  margin: auto;
+  border-radius: 8px;
+}
 .hero-section {
-  align-items: center;
-  /* background-image: url('img/burguers/combo-especial.jpeg'); */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: fill;
-  display: flex;
-  flex-direction: column;
-  height: 500px;
-  justify-content: center;
-  margin-bottom: 4rem;
-  text-transform: uppercase;
+  position: relative;
+  padding: 100px 0;
 }
 
 .hero-section h2 {
-  background-color: var(--color-background);
-  font-size: var(--spacing-large);
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
 }
 
 .hero-section p {
-  background-color: var(--color-background);
-  font-size: var(--spacing-medium);
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 /* Menu Section */
@@ -295,7 +270,6 @@ a:hover {
 @media screen and (max-width: 1320px) {
   .hero-section {
     margin: 0 auto;
-    width: 80%;
   }
 
   .menu-item-container {
@@ -344,52 +318,81 @@ a:hover {
   }
   
   .menu-toggle {
-    background: var(--color-primary);
+    background: none;
     border: none;
-    border-radius: 40%;
-    display: block;
-    color: white;
+    color: var(--color-primary);
     cursor: pointer;
-    font-size: 1.5rem;
-    padding: 0.5rem;
+    display: block;
+    font-size: 2rem;
   }
-  
-    .main-nav ul {
-    align-items: center;
-    background-color: var(--color-background);
+
+  .menu-list {
+    background: #ffffff;
+    border: 1px solid rgba(200, 200, 200, 0.8);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 1px 3px rgba(255, 255, 255, 0.8);
     display: none;
     flex-direction: column;
-    height: 100%;
     left: 0;
-    padding: 3rem;
+    margin-top: 3.7rem;
+    opacity: 0;
+    padding: 1rem 0;
     position: absolute;
-    top: 22%;
+    top: 60px;
+    transform: translateY(-10px);
     width: 100%;
-    z-index: 999;
+    z-index: 1000;
+  }
+
+  .menu-list li {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  .menu-list.show {
+    display: flex;
+    animation: fadeIn 0.3s ease-in-out forwards;
   }
   
-  .main-nav ul.show {
-    display: flex;
+  .menu-list.hide {
+    animation: fadeOut 0.3s ease-in-out forwards;
   }
 
-  .menu-list li:nth-child(2) {
-    padding: 3rem 0;
-  }
-
-  .main-nav ul li a {
-    border: none;
-    font-size: var(--spacing-medium);
-    letter-spacing: 1px;
+  .menu-list li a {
+    background-color: transparent;
+    color: var(--color-primary);
+    display: block;
+    font-size: 1rem;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
     text-transform: uppercase;
-  } 
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 100%;
+  }
+  
+  .menu-list li a:hover {
+    background-color: var(--color-secondary-light);
+    color: #fff;
+  }
+  
+  .footer {
+    background: #ff9800;
+    color: #fff;
+    font-size: 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 500px) {
   .menu-title,
-  .sides-section .sides-title,
-  .drinks-section .drinks-title,
-  .sauces-section .sauces-title {
-    font-size: 1.3rem;
+  .sides-title,
+  .drinks-title,
+  .sauces-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
   }
 
   .menu-section img,
@@ -398,6 +401,16 @@ a:hover {
   .sauces-section img {
     height: 150px;
   }
+
+  .menu-list {
+    display: none;
+    flex-direction: column;
+    margin-top: 8rem;
+    padding: 1rem;
+    transform: translateY(-10px);
+    width: 100%;
+    z-index: 1000;
+  }  
 
   .menu-item h3 {
     font-size: 1.2rem;
@@ -419,13 +432,9 @@ a:hover {
   }
 
   .main-nav ul {
-    height: 80%;
-    top: 20%;
-  }
-
-  .footer {
-    font-size: 1rem;
-    padding: 10px;
+    height: auto;
+    padding: 1rem 0;
+    top: 0;
   }
 }
 
