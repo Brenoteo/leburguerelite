@@ -65,19 +65,3 @@ document.addEventListener("DOMContentLoaded", () => {
   // Inicializar o estado do menu
   initializeMenu();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
