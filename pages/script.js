@@ -65,3 +65,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // Inicializar o estado do menu
   initializeMenu();
 });
+
+
+// Aguardar o carregamento completo da página
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contactForm');
+  const successMessage = document.getElementById('successMessage');
+
+  // Evento para enviar o formulário
+  form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Evita o envio padrão do formulário (e recarregamento da página)
+
+      // Simula o envio do formulário (aqui você pode fazer a integração com backend ou API)
+      setTimeout(function() {
+          // Exibe a mensagem de sucesso
+          successMessage.style.display = 'block';
+
+          // Limpa o formulário após 2 segundos
+          setTimeout(function() {
+              form.reset();
+              successMessage.style.display = 'none';
+          }, 2000); // Esconde após 2 segundos
+      }, 500); // Atraso para simular o envio
+  });
+});
