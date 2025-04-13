@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Entre em contato com a nossa hamburgueria e envie sua mensagem. Estamos prontos para atender você!">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="../../main.css">
+  <script defer src="../../script.js"></script>
+  <title>Contato - Hamburgueria Le Burger Elite</title>
+  <link rel="icon" href="../../img/logo/favicon-16x16.png" type="image/png">
+</head>
+
+<body>
+
+  <!-- Header & Navbar -->
+  <header>
+    <div class="header-container">
+      <figure class="logo">
+        <img src="../../img/logo/logo-2.jpeg" alt="Logo Le Burger Élite">
+      </figure>
+
+      <h1>Le Burger Elite</h1>
+
+      <nav role="navigation" class="main-nav">
+        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+        <ul class="menu-list">
+          <li><a href="../../index.html" aria-label="Ver todos os burguers">Burguers</a></li>
+          <li><a href="../about/about.html" aria-label="Saiba mais sobre nós">Sobre</a></li>
+          <li><a href="#" aria-label="Entre em contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Topo com imagem e texto chamativo -->
+  <section class="contact-header">
+    <div class="contact-header-content">
+      <h2>Fale Conosco</h2>
+      <p>Estamos prontos para ouvir você!</p>
+      <a href="#formulario" class="cta-button">Envie Sua Mensagem</a>
+    </div>
+  </section>
+
+  <!-- Formulário de contato -->
+  <section id="formulario" class="contact-form">
+    <h2>Formulário de Contato</h2>
+    <form id="contactForm" class="form-container">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required aria-label="Digite seu nome">
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required aria-label="Digite seu e-mail">
+
+      <label for="assunto">Assunto:</label>
+      <input type="text" id="assunto" name="assunto" required aria-label="Digite o assunto">
+
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" required aria-label="Digite sua mensagem"></textarea>
+
+      <button type="submit" class="submit-button">Enviar Mensagem</button>
+    </form>
+    <div id="successMessage" class="success-message" style="display:none;">
+      <p>Mensagem enviada com sucesso! <span>Obrigado pelo seu contato.</span></p>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h2>Conecte-se Comigo!</h2>
+      <p>Vamos transformar sonhos em projetos!</p>
+
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/brenoteo/" target="_blank" aria-label="LinkedIn do Criador">LinkedIn</a>
+        <a href="https://www.instagram.com/c4teodoro/" target="_blank" aria-label="Instagram do Criador">Instagram</a>
+        <a href="https://github.com/brenoteo/" target="_blank" aria-label="Github do Criador">Github</a>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p>&copy; 2024 Le Burger Elite. Criado por Breno Teodoro.</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>

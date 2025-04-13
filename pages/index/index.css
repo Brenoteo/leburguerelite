@@ -1,0 +1,456 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&family=Poppins:wght@100;400;700&display=swap");
+
+/* Layout */
+.menu-title,
+.sides-title,
+.drinks-title,
+.sauces-title {
+  font-size: var(--font-title);
+  padding: 3rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.menu-item-container,
+.sides-item-container,
+.drinks-item-container,
+.sauces-item-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0 auto;
+  position: relative;
+  width: 80%;
+}
+
+.drinks-item-container {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.sauces-item-container {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.menu-item,
+.sides-item,
+.drinks-item,
+.sauces-item {
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  height: auto;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.menu-item:hover,
+.sides-item:hover,
+.drinks-item:hover,
+.sauces-item:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 30px rgba(255, 0, 0, 0.9);
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.menu-item img,
+.sides-item img,
+.drinks-item img,
+.sauces-item img {
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+  -webkit-user-drag: none;
+  border: 2px solid yellow;
+  border-radius: 10%;
+  height: 100px;
+  left: 0;
+  object-fit: cover;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+}
+
+.menu-item h3,
+.sides-item h3,
+.drinks-item h3,
+.sauces-item h3 {
+  color: #111;
+  font-size: var(--font-section-h3);
+  height: 50px;
+  line-height: 1;
+  margin-left: auto;
+  padding: 1rem;
+  text-align: end;
+  text-transform: uppercase;
+  width: 65%;
+}
+
+.menu-item .price,
+.sides-item .price,
+.drinks-item .price,
+.sauces-item .price {
+  background: linear-gradient(90deg, #f1c40f, #fbff00);
+  border-radius: 4px;
+  color: #222;
+  font-size: var(--font-price);
+  font-weight: bold;
+  height: 50px;
+  margin-left: auto;
+  padding: 1rem;
+  text-align: end;
+  text-transform: uppercase;
+}
+
+.menu-item .description,
+.sides-item .description,
+.drinks-item .description,
+.sauces-item .description {
+  color: #333;
+  font-size: var(--font-size-description);
+  font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  padding: 1rem;
+  text-align: end;
+  text-transform: uppercase;
+}
+
+.menu-item a,
+.sides-item a,
+.drinks-item a,
+.sauces-item a {
+  border-radius: 0 0 8px 8px;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.button {
+  background-color: var(--color-primary);
+  color: white;
+  display: inline-block;
+  padding: 10px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+/* Top Header */
+.header-container {
+  align-items: center;
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+  justify-content: space-between;
+  padding: 2% 5%;
+}
+
+.logo img {
+  border-radius: 50%;
+  height: 100px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.header-container h1 {
+  background: linear-gradient(90deg, #c0392b, #e63946);
+  color: #333;
+  font-family: "Playfair Display", serif;
+  font-size: calc(0.8rem + 2vw);
+  text-transform: uppercase;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: #c0392b;
+  cursor: pointer;
+  display: none;
+  font-size: 1.5rem;
+}
+
+.menu-list {
+  display: block;
+  list-style: none;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+}
+
+.main-nav ul li {
+  margin-right: 1rem;
+}
+
+.main-nav ul li a {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 15px;
+  color: #333;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.main-nav ul li a:hover {
+  background-color: #c0392b;
+  border-radius: 5px;
+  color: #fff;
+}
+
+/* Hero Section */
+.hero-section .overlay {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  max-width: 600px;
+  margin: auto;
+  border-radius: 8px;
+}
+.hero-section {
+  position: relative;
+  padding: 100px 0;
+}
+
+.hero-section h2 {
+  margin-bottom: 10px;
+}
+
+.hero-section p {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+/* Footer */
+.footer {
+  background: #cd7f32;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 6rem;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+.footer-social a {
+  color: var(--color-background);
+  margin: 0 10px;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.footer-social a:hover {
+  opacity: 0.7;
+}
+
+.footer-legal {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 890px) {
+  .drinks-item-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sauces-item-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .drinks-item-container > :nth-child(3) {
+    grid-column: span 2;
+  }
+
+  .sauces-item-container > :nth-child(1) {
+    grid-column: span 2;
+  }
+}
+
+@media screen and (max-width: 788px) {
+  .header-container h1 {
+    display: none;
+  }
+
+  .menu-item-container,
+  .sides-item-container,
+  .drinks-item-container,
+  .sauces-item-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .header-container h1 {
+    font-size: 1rem;
+  }
+
+  .hero-section {
+    height: auto;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+  .menu-toggle {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    cursor: pointer;
+    display: block;
+    font-size: 2rem;
+  }
+
+  .menu-list {
+    background: #ffffff;
+    border: 1px solid rgba(200, 200, 200, 0.8);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+      inset 0 1px 3px rgba(255, 255, 255, 0.8);
+    display: none;
+    flex-direction: column;
+    left: 0;
+    margin-top: 3.7rem;
+    opacity: 0;
+    padding: 1rem 0;
+    position: absolute;
+    top: 60px;
+    transform: translateY(-10px);
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .menu-list li {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  .menu-list.show {
+    display: flex;
+    animation: fadeIn 0.3s ease-in-out forwards;
+  }
+  .menu-list.hide {
+    animation: fadeOut 0.3s ease-in-out forwards;
+  }
+
+  .menu-list li a {
+    background-color: transparent;
+    color: var(--color-primary);
+    display: block;
+    font-size: 1rem;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 100%;
+  }
+  .menu-list li a:hover {
+    background-color: var(--color-secondary-light);
+    color: #fff;
+  }
+  .footer {
+    background: #ff9800;
+    color: #fff;
+    font-size: 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .menu-title,
+  .sides-title,
+  .drinks-title,
+  .sauces-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .menu-section img,
+  .sides-section img,
+  .drinks-section img,
+  .sauces-section img {
+    height: 150px;
+  }
+
+  .menu-list {
+    display: none;
+    flex-direction: column;
+    margin-top: 8rem;
+    padding: 1rem;
+    transform: translateY(-10px);
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .menu-item h3 {
+    font-size: 1.2rem;
+    height: 30px;
+  }
+
+  .menu-item p {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .menu-item .description {
+    font-size: 0.9rem;
+  }
+
+  .menu-item .button {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+
+  .main-nav ul {
+    height: auto;
+    padding: 1rem 0;
+    top: 0;
+  }
+}
+
+/* Animação para abrir o menu */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animação para fechar o menu */
+.fade-out {
+  animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}

@@ -1,0 +1,169 @@
+/* Topo com imagem e texto chamativo */
+.contact-header {
+  background-image: url("../../img/contact/image-contact-us.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
+  color: white;
+  padding: 6rem 0;
+  text-align: center;
+}
+
+.contact-header .contact-header-content h2 {
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: var(--spacing-small);
+  text-transform: uppercase;
+}
+
+.contact-header .contact-header-content p {
+  margin-bottom: 2rem;
+}
+
+.contact-header .cta-button {
+  background-color: var(--color-primary);
+  border-radius: 30px;
+  color: white;
+  font-weight: bold;
+  padding: var(--spacing-small) var(--spacing-large);
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-header .cta-button:hover {
+  background-color: var(--color-secondary);
+  transform: scale(1.05);
+}
+
+/* Formulário de contato */
+.contact-form {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  margin: 4rem auto;
+  max-width: 900px;
+  padding: 3rem 2.5rem;
+}
+
+.contact-form h2 {
+  color: var(--color-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: var(--spacing-medium);
+  text-align: center;
+}
+
+.contact-form label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-small);
+}
+
+.contact-form input,
+.contact-form textarea {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: var(--spacing-medium);
+  padding: var(--spacing-small);
+  transition: border-color 0.3s ease;
+  width: 100%;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.contact-form textarea {
+  min-height: 150px;
+}
+
+.contact-form button {
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: var(--spacing-small);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.contact-form button:hover {
+  background-color: var(--color-secondary);
+  transform: scale(1.03);
+}
+
+/* Mensagem de sucesso */
+.success-message {
+  background-color: #28a745; /* Cor verde para sucesso */
+  color: white;
+  padding: 1rem;
+  margin-top: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.success-message span {
+  font-size: 1.2rem;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+  .contact-header .contact-header-content h2 {
+    font-size: 2rem;
+  }
+
+  .contact-header .cta-button {
+    padding: var(--spacing-small) var(--spacing-medium);
+  }
+
+  .contact-form {
+    margin: 2rem auto;
+    max-width: 100%;
+    padding: 2rem;
+  }
+
+  .contact-form h2 {
+    font-size: 1.75rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: var(--spacing-small);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contact-header .contact-header-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .contact-form {
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+  }
+
+  .contact-form h2 {
+    font-size: 1.5rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: var(--spacing-small);
+  }
+
+  .contact-header .cta-button {
+    font-size: 1rem;
+    padding: var(--spacing-small) var(--spacing-medium);
+  }
+}

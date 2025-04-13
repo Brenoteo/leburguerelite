@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-background: #f4f4f4;
+  --color-primary: #c0392b;
+  --color-secondary: #e63946;
+  --font-primary: "Poppins", sans-serif;
+  --font-title: 50px;
+  --font-section-h3: 18px;
+  --font-price: 18px;
+  --font-size-description: 12px;
+}
+
+body {
+  background-color: var(--color-background);
+  color: #333;
+  font-family: var(--font-primary);
+  font-size: var(--spacing-medium);
+  line-height: var(--line-height);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  background: var(--color-secondary);
+  color: var(--color-background);
+}

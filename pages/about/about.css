@@ -1,0 +1,203 @@
+/* Hero Section */
+.hero {
+  background-attachment: fixed;
+  background-image: url("../../img/about/waiter-serving-burgers-and-fries.webp");
+  background-position: center;
+  background-size: cover;
+  color: white;
+  padding: 120px 20px;
+  position: relative;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.hero::before {
+  background: rgba(0, 0, 0, 0.8);
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 20px auto 0;
+  max-width: 800px;
+  padding: 10px 20px;
+}
+
+/* Nossa História */
+.our-history {
+  background-image: url("../../img/about/bg-palm-leaves.webp");
+  background-position: center;
+  background-size: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 5rem 2rem;
+  position: relative;
+  text-align: center;
+}
+
+.our-history h3 {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.our-history p {
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 8px;
+  color: #333;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 auto 40px;
+  max-width: 900px;
+  padding: 15px;
+}
+
+/* Nossa Missão e Valores */
+.mission-values {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.mission-values h3 {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.mission-values p {
+  color: #333;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 auto 40px;
+  max-width: 900px;
+}
+
+.ingredients {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+
+.ingredient-container {
+  text-align: center;
+}
+
+.ingredient {
+  background: linear-gradient(145deg, #fff, #f7f7f7);
+  border-radius: 50%;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  height: auto;
+  padding: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 90px;
+}
+
+.ingredient:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.ingredient-container span {
+  color: #555;
+  display: block;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Galeria de Imagens */
+.gallery {
+  background-color: #f4f4f4;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.gallery h3 {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.image-container img {
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+.image-container img:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+/* Media Query para telas a partir de 660px */
+@media screen and (max-width: 660px) {
+  /* Hero Section */
+  .hero {
+    padding: 80px 20px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    max-width: 600px;
+  }
+
+  .icon {
+    display: none;
+  }
+
+  /* Nossa História */
+  .our-history {
+    padding: 4rem 2rem;
+  }
+
+  .our-history h3 {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+  }
+
+  .ingredients {
+    display: flex;
+    gap: 1px;
+  }
+}
