@@ -1,11 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&family=Poppins:wght@100;400;700&display=swap");
-
 /* Layout */
 .menu-title,
 .sides-title,
 .drinks-title,
 .sauces-title {
-  font-size: var(--font-title);
+  font-size: var(--font-size-title);
   padding: 3rem;
   text-align: center;
   text-transform: uppercase;
@@ -142,13 +140,11 @@
 .header-container {
   align-items: center;
   display: flex;
-  font-family: "Montserrat", sans-serif;
   justify-content: space-between;
   padding: 2% 5%;
 }
 
 .logo img {
-  border-radius: 50%;
   height: 100px;
   object-fit: cover;
   overflow: hidden;
@@ -157,7 +153,7 @@
 .header-container h1 {
   background: linear-gradient(90deg, #c0392b, #e63946);
   color: #333;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-theburguer);
   font-size: calc(0.8rem + 2vw);
   text-transform: uppercase;
   background-clip: text;
@@ -168,7 +164,7 @@
 .menu-toggle {
   background: none;
   border: none;
-  color: #c0392b;
+  color: var(--color-primary);
   cursor: pointer;
   display: none;
   font-size: 1.5rem;
@@ -189,64 +185,80 @@
 }
 
 .main-nav ul li a {
+  color: #333;
   font-size: 1rem;
   font-weight: bold;
   padding: 10px 15px;
-  color: #333;
+  text-transform: uppercase;
   transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .main-nav ul li a:hover {
-  background-color: #c0392b;
+  background-color: var(--color-primary);
   border-radius: 5px;
   color: #fff;
 }
 
 /* Hero Section */
+.hero-section {
+  background-image: url("../../img/burguers/hero.webp");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  padding: 100px 0;
+  position: relative;
+}
+
 .hero-section .overlay {
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
+  background: rgba(255, 255, 255, 0.8);
   padding: 20px;
   text-align: center;
   max-width: 600px;
   margin: auto;
   border-radius: 8px;
 }
-.hero-section {
-  position: relative;
-  padding: 100px 0;
-}
 
 .hero-section h2 {
+  color: #222;
+  font-size: 2rem;
   margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 .hero-section p {
-  color: #fff;
+  color: #222;
+  font-size: 15px;
+  font-weight: bold;
   margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.hero-section strong {
+  color: #333;
+  font-size: 1rem;
+  text-transform: uppercase;
 }
 
 /* Footer */
 .footer {
-  background: #cd7f32;
+  background: #ff9800;
   color: #fff;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-footer);
   margin-top: 6rem;
   padding: 20px;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .footer h2 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-bottom: 10px;
-}
-
-.footer p {
-  margin: 5px 0;
 }
 
 .footer-social a {
   color: var(--color-background);
+  font-size: 1rem;
   margin: 0 10px;
   text-decoration: none;
   transition: opacity 0.3s;
@@ -257,7 +269,7 @@
 }
 
 .footer-legal {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-top: 10px;
 }
 
@@ -281,29 +293,6 @@
 }
 
 @media screen and (max-width: 788px) {
-  .header-container h1 {
-    display: none;
-  }
-
-  .menu-item-container,
-  .sides-item-container,
-  .drinks-item-container,
-  .sauces-item-container {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .header-container h1 {
-    font-size: 1rem;
-  }
-
-  .hero-section {
-    height: auto;
-    padding: 10px;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
   .menu-toggle {
     background: none;
     border: none;
@@ -357,20 +346,83 @@
     transition: background-color 0.3s ease, color 0.3s ease;
     width: 100%;
   }
+
   .menu-list li a:hover {
-    background-color: var(--color-secondary-light);
+    background-color: var(--color-secondary);
     color: #fff;
   }
-  .footer {
-    background: #ff9800;
-    color: #fff;
+
+  .menu-title,
+  .sides-title,
+  .drinks-title,
+  .sauces-title {
+    font-size: 35px;
+  }
+
+  .header-container h1 {
+    display: none;
+  }
+
+  .menu-item-container,
+  .sides-item-container,
+  .drinks-item-container,
+  .sauces-item-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .drinks-item-container > :nth-child(3) {
+    grid-column: span 1;
+  }
+
+  .sauces-item-container > :nth-child(1) {
+    grid-column: span 1;
+  }
+
+  .header-container h1 {
     font-size: 1rem;
+  }
+
+  .hero-section {
+    height: auto;
+    padding: 10px;
+  }
+
+  .footer {
+    color: #fff;
     padding: 1rem;
     text-align: center;
   }
 }
 
 @media screen and (max-width: 500px) {
+  .main-nav ul {
+    height: auto;
+    padding: 1rem 0;
+    top: 0;
+  }
+
+  .menu-list {
+    display: none;
+    flex-direction: column;
+    margin-top: 8rem;
+    padding: 1rem;
+    transform: translateY(-10px);
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .hero-section h2 {
+    font-size: 18px;
+  }
+
+  .hero-section p {
+    font-size: 12px;
+  }
+
+  .hero-section strong {
+    font-size: 14px;
+  }
+
   .menu-title,
   .sides-title,
   .drinks-title,
@@ -384,42 +436,38 @@
   .sides-section img,
   .drinks-section img,
   .sauces-section img {
-    height: 150px;
+    height: 80px;
   }
 
-  .menu-list {
-    display: none;
-    flex-direction: column;
-    margin-top: 8rem;
-    padding: 1rem;
-    transform: translateY(-10px);
-    width: 100%;
-    z-index: 1000;
-  }
-
-  .menu-item h3 {
-    font-size: 1.2rem;
+  .menu-item h3,
+  .sides-item h3,
+  .drinks-item h3,
+  .sauces-item h3 {
+    font-size: 15px;
     height: 30px;
   }
 
-  .menu-item p {
-    font-size: 1rem;
+  .menu-item .price,
+  .sides-item .price,
+  .drinks-item .price,
+  .sauces-item .price {
+    font-size: 15px;
     margin-bottom: 0.3rem;
   }
 
-  .menu-item .description {
-    font-size: 0.9rem;
+  .menu-item .description,
+  .sides-item .description,
+  .drinks-item .description,
+  .sauces-item .description {
+    font-size: 10px;
   }
 
-  .menu-item .button {
-    font-size: 1rem;
+  .menu-item .button,
+  .sides-item .button,
+  .drinks-item .button,
+  .sauces-item .button {
+    font-size: 12px;
     margin-top: 1rem;
-  }
-
-  .main-nav ul {
-    height: auto;
-    padding: 1rem 0;
-    top: 0;
   }
 }
 
