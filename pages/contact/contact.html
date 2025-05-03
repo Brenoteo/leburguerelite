@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="../../main.css">
   <script defer src="../../script.js"></script>
   <title>Contato - The Burguer</title>
-  <link rel="icon" href="../../img/logo/favicon-16x16.png" type="image/png">
 </head>
 
 <body>
@@ -19,70 +18,90 @@
   <header>
     <div class="header-container">
       <figure class="logo">
-        <img src="../../img/logo/logo.jpeg" alt="Logo The Burguer">
+        <img src="../../src/assets/img/logo/logo.jpeg" alt="The Burguer logo">
       </figure>
 
       <h1>The Burguer</h1>
-
       <nav role="navigation" class="main-nav">
         <button class="menu-toggle" aria-label="Abrir menu">☰</button>
         <ul class="menu-list">
           <li><a href="../../index.html" aria-label="Ver todos os burguers">Burguers</a></li>
-          <li><a href="../about/about.html" aria-label="Saiba mais sobre nós">Sobre</a></li>
+          <!-- <li><a href="pages/about/about.html" aria-label="Saiba mais sobre nós">Sobre</a></li> -->
           <li><a href="#" aria-label="Entre em contato">Contato</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- Topo com imagem e texto chamativo -->
-  <section class="contact-header">
-    <div class="contact-header-content">
-      <h2>Fale Conosco</h2>
-      <p>Estamos prontos para ouvir você!</p>
-      <a href="#formulario" class="cta-button">Envie Sua Mensagem</a>
-    </div>
+  <main class="contact-page">
+    <section class="contact-container">
+      <section class="contact-left">
+        <h2>Onde nos encontrar</h2>
+        <ul class="contact-icons">
+          <li>
+            <a href="https://www.whatsapp.com/?lang=pt_br" target="_blank" aria-label="WhatsApp">
+              <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Ícone do WhatsApp" width="24"
+                height="24">WhatsApp</a>
+          </li>
+          <li>
+            <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
+              <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Ícone do Instagram" width="24"
+                height="24">Instagram</a>
+          </li>
+          <li>
+            <a href="https://www.google.com/maps/place/Av.+Paulista,+São+Paulo+-+SP/" target="_blank"
+              aria-label="Localização no Google Maps">
+              <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Ícone de localização" width="24"
+                height="24">Av. Paulista, São Paulo/SP</a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Right Side -->
+      <section class="contact-right">
+        <form>
+          <label for="name">Nome*:</label>
+          <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+
+
+          <label for="phone">Telefone:</label>
+          <input type="tel" id="phone" name="phone" placeholder="Telefone (opcional)">
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" placeholder="Email (opcional)">
+
+          <label for="message">Mensagem*:</label>
+          <textarea id="message" name="message" rows="5" placeholder="Digite sua mensagem" required></textarea>
+
+          <button type="submit">Enviar mensagem</button>
+        </form>
+        <section />
+      </section>
+  </main>
+
+  <!-- Google Maps -->
+  <section class="contact-map">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.941215949805!2d-46.656571684419836!3d-23.572012467987132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c7c5ec7ed1%3A0x75d29f4c5b27d313!2sAv.%20Paulista!5e0!3m2!1spt-BR!2sbr!4v1614094736645!5m2!1spt-BR!2sbr"
+      width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
   </section>
-
-  <!-- Formulário de contato -->
-  <section id="formulario" class="contact-form">
-    <h2>Formulário de Contato</h2>
-    <form id="contactForm" class="form-container">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required aria-label="Digite seu nome">
-
-      <label for="email">E-mail:</label>
-      <input type="email" id="email" name="email" required aria-label="Digite seu e-mail">
-
-      <label for="assunto">Assunto:</label>
-      <input type="text" id="assunto" name="assunto" required aria-label="Digite o assunto">
-
-      <label for="mensagem">Mensagem:</label>
-      <textarea id="mensagem" name="mensagem" required aria-label="Digite sua mensagem"></textarea>
-
-      <button type="submit" class="submit-button">Enviar Mensagem</button>
-    </form>
-    <div id="successMessage" class="success-message" style="display:none;">
-      <p>Mensagem enviada com sucesso! <span>Obrigado pelo seu contato.</span></p>
-    </div>
-  </section>
-
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
       <h2>Conecte-se Comigo!</h2>
-      <p>Vamos transformar sonhos em projetos!</p>
 
       <div class="footer-social">
-        <a href="https://www.linkedin.com/in/brenoteo/" target="_blank" aria-label="LinkedIn do Criador">LinkedIn</a>
-        <a href="https://www.instagram.com/c4teodoro/" target="_blank" aria-label="Instagram do Criador">Instagram</a>
+        <a href="https://www.linkedin.com/in/brenoteo/" target="_blank"
+          aria-label="LinkedIn do Criador"><strong>LinkedIn</strong></a>
         <a href="https://github.com/brenoteo/" target="_blank" aria-label="Github do Criador">Github</a>
       </div>
     </div>
 
     <div class="footer-legal">
-      <p>&copy; 2025 The Burguer. Criado por Breno Teodoro.</p>
+      <p>&copy; 2025. Criado por <strong>Breno Teodoro.</strong></p>
     </div>
   </footer>
 

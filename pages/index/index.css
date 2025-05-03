@@ -34,7 +34,7 @@
 .drinks-item,
 .sauces-item {
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   height: auto;
   margin-bottom: 2rem;
@@ -47,10 +47,8 @@
 .sides-item:hover,
 .drinks-item:hover,
 .sauces-item:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 4px 30px rgba(255, 0, 0, 0.9);
-  transition: all 0.5s ease;
-  z-index: 1;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
 }
 
 .menu-item img,
@@ -201,7 +199,7 @@
 
 /* Hero Section */
 .hero-section {
-  background-image: url("../../img/burguers/hero.webp");
+  background-image: url("../../src/assets/img/burguers/hero.webp");
   background-position: center;
   background-size: cover;
   display: flex;
@@ -283,7 +281,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .drinks-item-container > :nth-child(3) {
+  .drinks-item-container > :nth-child(1) {
     grid-column: span 2;
   }
 
@@ -299,7 +297,7 @@
     color: var(--color-primary);
     cursor: pointer;
     display: block;
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   .menu-list {
@@ -360,7 +358,8 @@
   }
 
   .header-container h1 {
-    display: none;
+    font-size: calc(0.8rem + 3vw);
+    display: block;
   }
 
   .menu-item-container,
@@ -378,10 +377,6 @@
     grid-column: span 1;
   }
 
-  .header-container h1 {
-    font-size: 1rem;
-  }
-
   .hero-section {
     height: auto;
     padding: 10px;
@@ -395,10 +390,22 @@
 }
 
 @media screen and (max-width: 500px) {
+  .logo img {
+    height: 50px;
+  }
+
+  .header-container h1 {
+    font-size: calc(0.8rem + 2vw);
+  }
+
+  .menu-toggle {
+    font-size: 2rem;
+  }
+
   .main-nav ul {
     height: auto;
     padding: 1rem 0;
-    top: 0;
+    top: -60px;
   }
 
   .menu-list {
@@ -427,9 +434,10 @@
   .sides-title,
   .drinks-title,
   .sauces-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: clamp(1rem, 8vw, 2.5rem);
     text-align: center;
+    text-wrap: balance;
+    word-break: break-word;
   }
 
   .menu-section img,

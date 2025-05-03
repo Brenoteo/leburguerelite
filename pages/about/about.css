@@ -1,7 +1,7 @@
 /* Hero Section */
 .hero {
   background-attachment: fixed;
-  background-image: url("../../img/about/waiter-serving-burgers-and-fries.webp");
+  background-image: url("../../src/assets/img/about/waiter-serving-burgers-and-fries.webp");
   background-position: center;
   background-size: cover;
   color: white;
@@ -47,7 +47,7 @@
 
 /* Nossa História */
 .our-history {
-  background-image: url("../../img/about/bg-palm-leaves.webp");
+  background-image: url("../../src/assets/img/about/bg-palm-leaves.webp");
   background-position: center;
   background-size: cover;
   border-radius: 8px;
@@ -166,7 +166,7 @@
   transform: scale(1.05);
 }
 
-/* Media Query para telas a partir de 660px */
+/* Responsividade */
 @media screen and (max-width: 660px) {
   /* Hero Section */
   .hero {
