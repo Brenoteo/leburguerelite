@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="img/logo/logo-2.jpeg" type="image/x-icon">
   <link rel="stylesheet" href="main.css">
-  <script defer src="script.js"></script>
+  <script src="script.js" defer></script>
   <title>The Burguer | Qualidade e Sabor Inigualáveis.</title>
 </head>
 
@@ -24,7 +24,6 @@
         <button class="menu-toggle" aria-label="Abrir menu">☰</button>
         <ul class="menu-list">
           <li><a href="#" aria-label="Ver todos os burguers">Burguers</a></li>
-          <!-- <li><a href="pages/about/about.html" aria-label="Saiba mais sobre nós">Sobre</a></li> -->
           <li><a href="pages/contact/contact.html" aria-label="Entre em contato">Contato</a></li>
         </ul>
       </nav>
@@ -45,23 +44,23 @@
   <section class="menu-section" role="region" aria-labelledby="menu-title">
     <h2 class="menu-title">Cardápio</h2>
 
-    <div class="menu-item-container">
+    <div class="menu-item-container" id="bacon-fusion">
       <div class="menu-item">
         <img src="src/assets/img/burguers/bacon-maple-bliss.webp" alt="Hambúrguer Bacon & Maple Bliss">
         <h3>Bacon Fusion</h3>
         <p class="price">R$ 44,90</p>
         <p class="description">200g de picanha suculenta com bacon crocante, cheddar cremoso, cebolas caramelizadas e
           maionese de mostarda dijon.</p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
 
       <div class="menu-item">
         <img src="src/assets/img/burguers/cordeiro-marroquino.webp" alt="Cordeiro Marroquino">
         <h3>Cordeiro Imperial</h3>
         <p class="price">R$ 43,90</p>
-        <p class="description">200g de cordeiro com especiarias marroquinas, queijo feta grelhado e molho tzatziki com
+        <p class="description">200g de cordeiro com especiarias marroquinas, queijo feta grelhado, salada e molho tzatziki com
           hortelã fresca.</p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
 
       <div class="menu-item">
@@ -70,7 +69,7 @@
         <p class="price">R$ 47,90</p>
         <p class="description">220g de costela suína desfiada, abacaxi caramelizado, queijo gouda defumado e molho
           barbecue especial.</p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
 
       <div class="menu-item">
@@ -79,16 +78,16 @@
         <p class="price">R$ 42,90</p>
         <p class="description">200g de fraldinha suculenta, queijo prato derretido, ovo frito, bacon, alface, tomate e
           maionese especial do Chef.</p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
 
       <div class="menu-item">
         <img src="src/assets/img/burguers/mango-habanero-fiesta.webp" alt="Mango Habanero Fiesta">
         <h3>Mango Fury</h3>
         <p class="price">R$ 45,90</p>
-        <p class="description">200g de patinho, bacon crocante, queijo pepper jack, chutney de manga picante
+        <p class="description">200g de patinho, bacon crocante, queijo pepper jack, salada, chutney de manga picante
           com habanero e alface fresca.</p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
 
       <div class="menu-item">
@@ -97,16 +96,16 @@
         <p class="price">R$ 41,90</p>
         <p class="description">200g de peru temperado com ervas finas, camembert derretido, maçãs caramelizadas na
           canela e maionese de mel.</p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
 
       <div class="menu-item">
         <img src="src/assets/img/burguers/o-preferido-da-casa.webp" alt="O Preferido da Casa">
         <h3>Clássico do Chef</h3>
         <p class="price">R$ 48,90</p>
-        <p class="description">200g de picanha grelhado, bacon, queijo provolone, cebolas empanadas e caramelizadas
+        <p class="description">200g de picanha grelhado, bacon, salada, queijo provolone, cebolas empanadas e caramelizadas
           em vinho tinto.</p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
 
       <div class="menu-item">
@@ -114,8 +113,8 @@
         <h3>Majestade Mignon</h3>
         <p class="price">R$ 52,90</p>
         <p class="description">200g de filet mignon grelhado, onion rings crocantes, queijo coalho derretido, molho
-          chimichurri, cebola roxa e picles.</p>
-        <a href="#" class="button">Peça Agora</a>
+          chimichurri, salada, cebola roxa e picles.</p>
+        <a href="#" class="button">Adicionar</a>
       </div>
     </div>
   </section>
@@ -130,7 +129,7 @@
         <h3>Batata Frita</h3>
         <p class="price">R$ 15,90</p>
         <p class="description">Batatas fritas crocantes com tempero cajun para um toque picante.</p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
 
       <div class="sides-item">
@@ -140,7 +139,7 @@
         <p class="price">R$ 16,90</p>
         <p class="description">Batatas assadas com alecrim fresco e alho poró, crocantes por fora e macias por dentro.
         </p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
 
       <div class="sides-item">
@@ -150,7 +149,7 @@
         <p class="price">R$ 18,90</p>
         <p class="description">Onion rings crocantes com tempero cremoso de queijo e molho verde, trazendo frescor a
           cada mordida.</p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
 
       <div class="sides-item">
@@ -160,7 +159,7 @@
         <p class="price">R$ 19,90</p>
         <p class="description">Batatas doces fritas crocantes com molho agridoce e cream cheese.
         </p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
     </div>
   </section>
@@ -177,7 +176,7 @@
         <p class="price">R$ 16,90</p>
         <p class="description">600ml - Revitalize-se com a combinação tropical de abacaxi, coco e o frescor da hortelã.
           Leve, refrescante e ideal para acompanhar sua refeição.</p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
 
       <div class="drinks-item">
@@ -187,7 +186,7 @@
         <p class="price">R$ 17,90</p>
         <p class="description">600ml - Sinta o frescor da melancia com o toque cítrico do limão siciliano. Uma explosão
           refrescante e vibrante.</p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
 
       <div class="drinks-item">
@@ -197,7 +196,7 @@
         <p class="price">R$ 19,90</p>
         <p class="description">600ml - A combinação perfeita de laranja sanguínea e cenoura para uma refrescância
           vibrante e naturalmente doce.</p>
-        <a href="#" class="button">Peça Agora</a>
+        <a href="#" class="button">Adicionar</a>
       </div>
     </div>
     </div>
@@ -214,7 +213,7 @@
         <h3>Exclusivo do Chef</h3>
         <p class="price">R$ 5,90</p>
         <p class="description">Uma maionese inédita com o toque secreto do Chef, feita para surpreender.</p>
-        <a href="#" class="button" aria-label="Adicionar molho agridoce ao pedido">Adicionar ao Pedido</a>
+        <a href="#" class="button" aria-label="Adicionar molho agridoce ao pedido">Adicionar</a>
       </div>
 
       <div class="sauces-item">
@@ -222,7 +221,7 @@
         <h3>Molho de Cheddar</h3>
         <p class="price">R$ 4,90</p>
         <p class="description">A combinação definitiva do molho secreto com cheddar derretido.</p>
-        <a href="#" class="button" aria-label="Adicionar molho trufado ao pedido">Adicionar ao Pedido</a>
+        <a href="#" class="button" aria-label="Adicionar molho trufado ao pedido">Adicionar</a>
       </div>
 
       <div class="sauces-item">
@@ -232,7 +231,7 @@
         <p class="price">R$ 5,90</p>
         <p class="description">Molho ultra cremoso, enriquecido com uma combinação perfeita de ervas frescas e sabores
           verdes.</p>
-        <a href="#" class="button" aria-label="Adicionar molho agridoce ao pedido">Adicionar ao Pedido</a>
+        <a href="#" class="button" aria-label="Adicionar molho agridoce ao pedido">Adicionar</a>
       </div>
     </div>
   </section>

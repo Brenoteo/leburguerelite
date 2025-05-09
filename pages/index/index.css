@@ -47,7 +47,7 @@
 .sides-item:hover,
 .drinks-item:hover,
 .sauces-item:hover {
-  transform: translateY(-5px);
+  background-color: #fff;
   transition: all 0.3s ease;
 }
 
@@ -369,7 +369,7 @@
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .drinks-item-container > :nth-child(3) {
+  .drinks-item-container > :nth-child(1) {
     grid-column: span 1;
   }
 
