@@ -1,0 +1,19 @@
+.cart-section {
+  background-color: orange;
+  position: relative;
+}
+
+.cart-container {
+  background-color: yellow;
+  position: absolute;
+  right: 5%;
+}
+
+.cart-container img {
+  position: fixed;
+}
+
+.cart-container span {
+  position: fixed;
+  right: 2%;
+}

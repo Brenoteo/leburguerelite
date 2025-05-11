@@ -1,3 +1,4 @@
 @import url(pages/base.css);
 @import url(pages/index/index.css);
+@import url(src/components/cart/cart.css);
 @import url(pages/contact/contact.css);
