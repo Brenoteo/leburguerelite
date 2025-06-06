@@ -43,35 +43,18 @@
 
   <!-- Cart Section -->
   <section class="cart-section">
-    <div class="cart-container">
-      <img src="https://img.icons8.com/ios-filled/50/000000/shopping-cart-loaded.png">
-      <span>2</span>
+    <div class="cart-container" id="cart">
+      <img src="https://img.icons8.com/ios-filled/50/000000/shopping-bag.png" alt="Sacola de compras estilo delivery">
+      <span>0</span>
+    </div>
   </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <!-- Menu Section -->
   <section class="menu-section" role="region" aria-labelledby="menu-title">
     <h2 class="menu-title">Cardápio</h2>
 
     <div class="menu-item-container">
-      <div class="menu-item">
+      <div class="menu-item" id="h1">
         <img src="src/assets/img/burguers/bacon-maple-bliss.webp" alt="Hambúrguer Bacon & Maple Bliss">
         <h3>Bacon Fusion</h3>
         <p class="price">R$ 44,90</p>
@@ -80,7 +63,7 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="menu-item">
+      <div class="menu-item" id="h2">
         <img src="src/assets/img/burguers/cordeiro-marroquino.webp" alt="Cordeiro Marroquino">
         <h3>Cordeiro Imperial</h3>
         <p class="price">R$ 43,90</p>
@@ -90,7 +73,7 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="menu-item">
+      <div class="menu-item" id="h3">
         <img src="src/assets/img/burguers/bbq-tropical-smash.webp" alt="BBQ Tropical Smash">
         <h3>Fusão BBQ Tropical</h3>
         <p class="price">R$ 47,90</p>
@@ -99,7 +82,7 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="menu-item">
+      <div class="menu-item" id="h4">
         <img src="src/assets/img/burguers/delicia-nacional.webp" alt="Truffle Mushroom Indulgence">
         <h3>Fraldinha Platinum</h3>
         <p class="price">R$ 42,90</p>
@@ -108,7 +91,7 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="menu-item">
+      <div class="menu-item" id="h5">
         <img src="src/assets/img/burguers/mango-habanero-fiesta.webp" alt="Mango Habanero Fiesta">
         <h3>Mango Fury</h3>
         <p class="price">R$ 45,90</p>
@@ -117,7 +100,7 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="menu-item">
+      <div class="menu-item" id="h6">
         <img src="src/assets/img/burguers/sweet-savory-apple-delight.webp" alt="Sweet & Savory Apple Delight">
         <h3>Turkey Flame</h3>
         <p class="price">R$ 41,90</p>
@@ -126,7 +109,7 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="menu-item">
+      <div class="menu-item" id="h7">
         <img src="src/assets/img/burguers/o-preferido-da-casa.webp" alt="O Preferido da Casa">
         <h3>Clássico do Chef</h3>
         <p class="price">R$ 48,90</p>
@@ -136,7 +119,7 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="menu-item">
+      <div class="menu-item" id="h8">
         <img src="src/assets/img/burguers/magnifico-mignon.webp" alt="O Preferido da Casa">
         <h3>Majestade Mignon</h3>
         <p class="price">R$ 52,90</p>
@@ -152,7 +135,7 @@
     <h2 class="sides-title">Acompanhamentos</h2>
 
     <div class="sides-item-container">
-      <div class="sides-item">
+      <div class="sides-item" id="p1">
         <img src="src/assets/img/potatoes/batatas-fritas-estilo-cajun.webp" alt="Batatas Fritas ao Estilo Cajun">
         <h3>Batata Frita</h3>
         <p class="price">R$ 15,90</p>
@@ -160,7 +143,7 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="sides-item">
+      <div class="sides-item" id="p2">
         <img src="src/assets/img/potatoes/batatas-rusticas-assadas-alecrim-alho.webp"
           alt="Batatas Rústicas Assadas com Alecrim e Alho">
         <h3>Batata Rústica</h3>
@@ -170,7 +153,7 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="sides-item">
+      <div class="sides-item" id="p3">
         <img src="src/assets/img/potatoes/onion-rings-recheadas.webp"
           alt="Onion Rings Recheadas com Queijo Cheddar e Ervas">
         <h3>Onion Rings Recheadas</h3>
@@ -180,7 +163,7 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="sides-item">
+      <div class="sides-item" id="p4">
         <img src="src/assets/img/potatoes/batatas-fritas-batata-doce-molho-agridoce-cream-cheese.webp"
           alt="Batatas Fritas de Batata Doce com Molho Doce-Picante de Abacaxi">
         <h3>Batata Doce Frita</h3>
@@ -197,7 +180,7 @@
     <h2 class="drinks-title">Bebidas</h2>
 
     <div class="drinks-item-container">
-      <div class="drinks-item">
+      <div class="drinks-item" id="d1">
         <img src="src/assets/img/drinks/suco-refrescante-abacaxi-hortela-agua-coco.webp"
           alt="Suco Refrescante de Abacaxi e Hortelã com Água de Coco">
         <h3>Abacaxi Hortelã</h3>
@@ -207,7 +190,7 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="drinks-item">
+      <div class="drinks-item" id="d2">
         <img src="src/assets/img/drinks/suco-gourmet-melancia-limao-siciliano-manjericao.webp"
           alt="Suco Gourmet de Melancia com Limão Siciliano e Manjericão">
         <h3>Melancia Cítrica</h3>
@@ -217,7 +200,7 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="drinks-item">
+      <div class="drinks-item" id="d3">
         <img src="src/assets/img/drinks/suco-premium-laranja-sanguinea-cenoura-gengibre.webp"
           alt="Suco Premium de Laranja Sanguínea com Cenoura e Gengibre">
         <h3>Explosão Laranja</h3>
@@ -235,7 +218,7 @@
     <h2 class="sauces-title">Molhos</h2>
 
     <div class="sauces-item-container">
-      <div class="sauces-item">
+      <div class="sauces-item" id="s1">
         <img src="src/assets/img/sauces/melhor-molho-secreto-alho-maionese.webp"
           alt="Molho Agridoce de Laranja com Gengibre">
         <h3>Exclusivo do Chef</h3>
@@ -244,7 +227,7 @@
         <a href="#" class="button" aria-label="Adicionar molho agridoce ao pedido">Adicionar</a>
       </div>
 
-      <div class="sauces-item">
+      <div class="sauces-item" id="s2">
         <img src="src/assets/img/sauces/molho-para-propaganda.webp" alt="Molho Trufado de Queijo Brie">
         <h3>Molho de Cheddar</h3>
         <p class="price">R$ 6,90</p>
@@ -252,7 +235,7 @@
         <a href="#" class="button" aria-label="Adicionar molho trufado ao pedido">Adicionar</a>
       </div>
 
-      <div class="sauces-item">
+      <div class="sauces-item" id="s3">
         <img src="src/assets/img/sauces/molho-caseiro-cremosoqueijo-brie-derretido.webp"
           alt="Molho Agridoce de Laranja com Gengibre">
         <h3>Creme de Ervas</h3>
