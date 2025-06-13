@@ -4,7 +4,7 @@
 
 .cart-container {
   background-color: rgb(255, 196, 0);
-  border-radius: 50%;
+  border-radius: 30%;
   bottom: 20px;
   cursor: pointer;
   padding: 10px;
@@ -36,7 +36,8 @@
 }
 
 @keyframes wave {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
