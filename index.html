@@ -7,12 +7,18 @@
   <link rel="shortcut icon" href="img/logo/logo-2.jpeg" type="image/x-icon">
   <link rel="stylesheet" href="main.css">
   <script src="script.js" defer></script>
-  <script src="src/components/cart/cart.js" defer></script>
+  <script src="src/scripts/cart/cart.js" defer></script>
   <title>The Burguer | Qualidade e Sabor Inigualáveis.</title>
 </head>
 
-<body>
+<!-- Modal de feedback do carrinho -->
+<div id="cart-modal" class="cart-modal">
+  <div class="modal-content">
+    <p class="modal-text"></p>
+  </div>
+</div>
 
+<body>
   <!-- Header & Navbar -->
   <header>
     <div class="header-container">
@@ -57,7 +63,7 @@
       <div class="menu-item" id="h1" data-name="Bacon Fusion" data-price="44.90">
         <img src="src/assets/img/burguers/bacon-maple-bliss.webp" alt="Hambúrguer Bacon & Maple Bliss">
         <h3>Bacon Fusion</h3>
-        <p class="price">R$ 44,90</p>
+        <p class="price">R$ 38,90</p>
         <p class="description">200g de picanha suculenta com bacon crocante, cheddar cremoso, cebolas caramelizadas e
           maionese de mostarda dijon.</p>
         <a href="#" class="button">Adicionar</a>
@@ -66,23 +72,23 @@
       <div class="menu-item" id="h2" data-name="Cordeiro Imperial" data-price="43.90">
         <img src="src/assets/img/burguers/cordeiro-marroquino.webp" alt="Cordeiro Marroquino">
         <h3>Cordeiro Imperial</h3>
-        <p class="price">R$ 43,90</p>
+        <p class="price">R$ 39,90</p>
         <p class="description">200g de cordeiro com especiarias marroquinas, queijo feta grelhado, salada e molho
           tzatziki com
           hortelã fresca.</p>
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="menu-item" id="h3" data-name="BBQ Tropical Smash" data-price="47.90">
+      <div class="menu-item" id="h3" data-name="Fusão BBQ Tropical" data-price="47.90">
         <img src="src/assets/img/burguers/bbq-tropical-smash.webp" alt="BBQ Tropical Smash">
         <h3>Fusão BBQ Tropical</h3>
-        <p class="price">R$ 47,90</p>
+        <p class="price">R$ 41,90</p>
         <p class="description">220g de costela suína desfiada, abacaxi caramelizado, queijo gouda defumado e molho
           barbecue especial.</p>
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="menu-item" id="h4" data-name="Truffle Mushroom Indulgence" data-price="42.90">
+      <div class="menu-item" id="h4" data-name="Fraldinha Platinum" data-price="42.90">
         <img src="src/assets/img/burguers/delicia-nacional.webp" alt="Truffle Mushroom Indulgence">
         <h3>Fraldinha Platinum</h3>
         <p class="price">R$ 42,90</p>
@@ -91,16 +97,16 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="menu-item" id="h5">
+      <div class="menu-item" id="h5" data-name="Mango Fury" data-price="45.90">
         <img src="src/assets/img/burguers/mango-habanero-fiesta.webp" alt="Mango Habanero Fiesta">
         <h3>Mango Fury</h3>
-        <p class="price">R$ 45,90</p>
+        <p class="price">R$ 43,90</p>
         <p class="description">200g de patinho, bacon crocante, queijo pepper jack, salada, chutney de manga picante
           com habanero e alface fresca.</p>
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="menu-item" id="h6" data-name="Sweet & Savory Apple Delight" data-price="41.90">
+      <div class="menu-item" id="h6" data-name="Turkey Flame" data-price="41.90">
         <img src="src/assets/img/burguers/sweet-savory-apple-delight.webp" alt="Sweet & Savory Apple Delight">
         <h3>Turkey Flame</h3>
         <p class="price">R$ 41,90</p>
@@ -109,10 +115,10 @@
         <a href="#" class="button">Adicionar</a>
       </div>
 
-      <div class="menu-item" id="h7" data-name="O Preferido da Casa" data-price="48.90">
+      <div class="menu-item" id="h7" data-name="Clássico do Chef" data-price="48.90">
         <img src="src/assets/img/burguers/o-preferido-da-casa.webp" alt="O Preferido da Casa">
         <h3>Clássico do Chef</h3>
-        <p class="price">R$ 48,90</p>
+        <p class="price">R$ 46,90</p>
         <p class="description">200g de picanha grelhado, bacon, salada, queijo provolone, cebolas empanadas e
           caramelizadas
           em vinho tinto.</p>
@@ -122,7 +128,7 @@
       <div class="menu-item" id="h8" data-name="Majestade Mignon" data-price="52.90">
         <img src="src/assets/img/burguers/magnifico-mignon.webp" alt="O Preferido da Casa">
         <h3>Majestade Mignon</h3>
-        <p class="price">R$ 52,90</p>
+        <p class="price">R$ 48,90</p>
         <p class="description">200g de filet mignon grelhado, onion rings crocantes, queijo coalho derretido, molho
           chimichurri, salada, cebola roxa e picles.</p>
         <a href="#" class="button">Adicionar</a>

@@ -1,33 +1,28 @@
-// Assumindo que você tem uma div #main-content em todas as páginas
-const mainContent = document.querySelector("#main-content");
-
-// Extrai apenas o conteúdo da nova página
-const parser = new DOMParser();
-const doc = parser.parseFromString(html, "text/html");
-const newContent = doc.querySelector("#main-content");
-
-if (newContent) {
-  mainContent.innerHTML = newContent.innerHTML;
-}
-
 const hamburger = document.querySelector(".menu-toggle");
 const menu = document.querySelector(".menu-list");
 
-// Evento de clique ao botão
+// Função única para alternar menu
+function toggleMenu(show) {
+  menu.classList.toggle("show", show);
+  menu.classList.toggle("hide", !show);
+}
+
+// Clique no hambúrguer
 hamburger.addEventListener("click", () => {
+  const isShowing = menu.classList.contains("show");
+  toggleMenu(!isShowing);
+});
+
+// Fechar ao rolar
+window.addEventListener("scroll", () => {
   if (menu.classList.contains("show")) {
-    menu.classList.remove("show");
-    menu.classList.add("hide");
-  } else {
-    menu.classList.remove("hide");
-    menu.classList.add("show");
+    toggleMenu(false);
   }
 });
 
-// Evento de scroll para fechar o menu
-window.addEventListener("scroll", () => {
-  if (menu.classList.contains("show")) {
-    menu.classList.remove("show");
-    menu.classList.add("hide");
+// OPCIONAL: Fechar ao clicar fora
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".main-nav") && menu.classList.contains("show")) {
+    toggleMenu(false);
   }
 });
