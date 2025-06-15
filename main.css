@@ -1,4 +1,6 @@
-@import url(pages/base.css);
-@import url(pages/index/index.css);
-@import url(src/scripts/cart/cart.css);
-@import url(pages/contact/contact.css);
+@import url(src/styles/base/reset.css);
+@import url(src/styles/base/variable.css);
+@import url(src/styles/components/cart.css);
+@import url(src/styles/components/payment.css);
+@import url(src/styles/pages/contact.css);
+@import url(src/styles/pages/index.css);

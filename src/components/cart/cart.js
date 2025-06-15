@@ -1,7 +1,7 @@
 class CartManager {
   constructor() {
     this.items = [];
-    this.deliveryFee = 5.00; // Taxa de entrega
+    this.deliveryFee = 3.00; // Taxa de entrega
     this.maxQuantity = 99;
     this.initialize();
   }
@@ -175,7 +175,7 @@ class CartManager {
             
             <div class="cart-actions">
               <button class="btn-clear">Limpar</button>
-              <button class="btn-checkout">Finalizar Pedido</button>
+              <button class="btn-checkout">Continuar</button>
             </div>
           </div>
         ` : ''}
@@ -303,24 +303,215 @@ class CartManager {
     this.showFeedback('Carrinho limpo', 'info');
   }
 
-  checkout(modal) {
-    const checkoutBtn = modal.querySelector('.btn-checkout');
-    checkoutBtn.innerHTML = '<span class="loading-spinner"></span> Processando...';
-    checkoutBtn.disabled = true;
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+checkout(modal) {
+  this.cartHTML = modal.querySelector('.cart-content').innerHTML;
+  
+  const content = modal.querySelector('.cart-content');
+  
+  content.innerHTML = `
+    <div class="cart-header">
+      <button class="back-to-cart">← Voltar</button>
+      <h2>Finalizar Pedido</h2>
+      <button class="close-cart" aria-label="Fechar">✕</button>
+    </div>
     
-    // Simular processamento
-    setTimeout(() => {
-      this.closeModal(modal);
-      this.showFeedback('Pedido realizado com sucesso!', 'success');
+    <div class="cart-body">
+      <div class="order-review">
+        <h3>Seu Pedido</h3>
+        ${this.items.map(item => `
+          <div class="review-item">
+            <span>${item.quantity}x ${item.name}</span>
+            <span>R$ ${(item.price * item.quantity).toFixed(2)}</span>
+          </div>
+        `).join('')}
+        <div class="review-total">
+          <strong>Total: R$ ${(this.getSubtotal() + this.deliveryFee).toFixed(2)}</strong>
+        </div>
+      </div>
       
-      // Aqui você faria a integração com WhatsApp ou sistema de pedidos
-      const pedido = this.formatOrder();
-      console.log('Pedido:', pedido);
+      <h3>Seus Dados</h3>
+      <input type="text" id="nome" placeholder="Seu nome" required>
+      <input type="tel" id="telefone" placeholder="WhatsApp" required>
       
-      // Limpar carrinho após pedido
-      this.clearCart();
-    }, 2000);
-  }
+      <!-- CEP que busca automático -->
+      <input type="text" id="cep" placeholder="CEP" maxlength="9">
+      
+      <input type="text" id="endereco" placeholder="Endereço e número" required>
+      <input type="text" id="bairro" placeholder="Bairro" required>
+      <textarea id="referencia" placeholder="Referência (opcional)" rows="2"></textarea>
+      
+      <h3>Pagamento</h3>
+      <select id="pagamento">
+        <option>Pix</option>
+        <option>Dinheiro</option>
+        <option>Cartão</option>
+        <option>Vale Refeição/Restaurante</option>
+      </select>
+    </div>
+    
+    <div class="cart-footer">
+      <button class="btn-send-order">Confirmar Pedido</button>
+    </div>
+  `;
+  
+  this.bindCheckoutEvents(modal);
+}
+
+bindCheckoutEvents(modal) {
+  // Voltar pro carrinho
+  modal.querySelector('.back-to-cart').addEventListener('click', () => {
+    modal.querySelector('.cart-content').innerHTML = this.cartHTML;
+    this.bindModalEvents(modal);
+  });
+  
+  // Fechar modal
+  modal.querySelector('.close-cart').addEventListener('click', () => {
+    this.closeModal(modal);
+  });
+  
+  // CEP automático
+  modal.querySelector('#cep').addEventListener('input', async (e) => {
+    let cep = e.target.value.replace(/\D/g, '');
+    
+    // Formata com hífen
+    if (cep.length > 5) {
+      e.target.value = cep.slice(0,5) + '-' + cep.slice(5,8);
+    }
+    
+    // Busca quando digita 8 números
+    if (cep.length === 8) {
+      try {
+        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const data = await response.json();
+        
+        if (!data.erro) {
+          document.getElementById('endereco').value = data.logradouro;
+          document.getElementById('bairro').value = data.bairro;
+          document.getElementById('endereco').focus(); // Foca pra digitar o número
+        }
+      } catch (error) {
+        // Ignora erro, usuário preenche manual
+      }
+    }
+  });
+  
+  // Enviar pedido
+  modal.querySelector('.btn-send-order').addEventListener('click', () => {
+    const nome = document.getElementById('nome').value;
+    const telefone = document.getElementById('telefone').value;
+    const cep = document.getElementById('cep').value;
+    const endereco = document.getElementById('endereco').value;
+    const bairro = document.getElementById('bairro').value;
+    const referencia = document.getElementById('referencia').value;
+    const pagamento = document.getElementById('pagamento').value;
+    
+    if (!nome || !telefone || !endereco || !bairro) {
+      alert('Preencha todos os campos!');
+      return;
+    }
+    
+    let msg = `*PEDIDO*\n\n`;
+    msg += `Nome: ${nome}\n`;
+    msg += `Tel: ${telefone}\n`;
+    if (cep) msg += `CEP: ${cep}\n`;
+    msg += `Endereço: ${endereco}, ${bairro}\n`;
+    if (referencia) msg += `Ref: ${referencia}\n`;
+    msg += `Pagamento: ${pagamento}\n\n`;
+    
+    msg += `*ITENS:*\n`;
+    this.items.forEach(item => {
+      msg += `${item.quantity}x ${item.name} = R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+    });
+    
+    msg += `\n*TOTAL: R$ ${(this.getSubtotal() + this.deliveryFee).toFixed(2)}*`;
+    
+    const numero = '5511999999999'; // NÚMERO DA LOJA
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`);
+    
+    this.clearCart();
+    this.closeModal(modal);
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   formatOrder() {
     const items = this.items.map(item => {
