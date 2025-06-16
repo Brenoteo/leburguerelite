@@ -361,24 +361,25 @@ class CartManager {
       </div>
       
       <h3>Seus Dados</h3>
-      <input type="text" id="nome" placeholder="Seu nome" required>
-      <input type="tel" id="telefone" placeholder="WhatsApp" required>
-      
-      <!-- CEP que busca automático -->
-      <input type="text" id="cep" placeholder="CEP" maxlength="9">
-      
-      <input type="text" id="endereco" placeholder="Endereço" required>
-      <input type="text" id="bairro" placeholder="Bairro" required>
-      <input type="text" id="numero" placeholder="Número" required>
-      <textarea id="referencia" placeholder="Referência (opcional)" rows="2"></textarea>
-      
-      <h3>Pagamento</h3>
-      <select id="pagamento">
-        <option>Pix</option>
-        <option>Dinheiro</option>
-        <option>Cartão</option>
-        <option>Vale Refeição/Restaurante</option>
-      </select>
+      <div class="form-grid">
+        <input type="text" id="nome" placeholder="Seu nome" required class="full-width">
+        <input type="tel" id="telefone" placeholder="WhatsApp" required class="full-width">
+        
+        <input type="text" id="cep" placeholder="CEP" maxlength="9">
+        <input type="text" id="numero" placeholder="Número" required>
+        
+        <input type="text" id="endereco" placeholder="Endereço" required class="full-width">
+        <input type="text" id="bairro" placeholder="Bairro" required class="full-width">
+        <textarea id="referencia" placeholder="Referência (opcional)" rows="2" class="full-width"></textarea>
+        
+        <h3 class="full-width">Pagamento</h3>
+        <select id="pagamento" class="full-width">
+          <option>Pix</option>
+          <option>Dinheiro</option>
+          <option>Cartão</option>
+          <option>Vale Refeição/Restaurante</option>
+        </select>
+      </div>
     </div>
     
     <div class="cart-footer">
