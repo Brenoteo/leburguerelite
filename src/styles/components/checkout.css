@@ -200,34 +200,34 @@
   .cart-header {
     padding: 10px 16px;
   }
-  
+
   .cart-header h2 {
     font-size: 16px;
   }
-  
+
   .cart-body {
     padding: 8px 12px;
   }
-  
+
   .order-review {
     padding: 8px 10px;
   }
-  
+
   .review-item {
     font-size: 11px;
     padding: 2px 0;
   }
-  
+
   .review-total {
     font-size: 13px;
     padding: 5px 8px;
   }
-  
+
   .cart-body h3 {
     font-size: 12px;
     margin: 8px 0 4px;
   }
-  
+
   .cart-body input,
   .cart-body textarea,
   .cart-body select {
@@ -235,12 +235,12 @@
     margin-bottom: 6px;
     padding: 6px 10px;
   }
-  
+
   .btn-send-order {
     font-size: 13px;
     padding: 10px;
   }
-  
+
   /* Mantém grid em mobile para economizar espaço */
   .form-grid {
     gap: 6px;
@@ -266,14 +266,14 @@
   .cart-body {
     max-height: calc(100vh - 120px);
   }
-  
+
   .cart-body input,
   .cart-body textarea,
   .cart-body select {
     margin-bottom: 5px;
     padding: 5px 10px;
   }
-  
+
   .cart-body textarea {
     min-height: 40px;
   }

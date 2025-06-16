@@ -9,14 +9,13 @@
   <script src="src/scripts/navigation.js" defer></script>
   <script src="src/components/cart/cart.js" defer></script>
   <title>The Burguer | Qualidade e Sabor Inigualáveis.</title>
-</head>
 
-<!-- Modal de feedback do carrinho -->
-<div id="cart-modal" class="cart-modal">
-  <div class="modal-content">
-    <p class="modal-text"></p>
+  <!-- Modal de feedback do carrinho -->
+  <div id="cart-modal" class="cart-modal">
+    <div class="modal-content">
+      <p class="modal-text"></p>
+    </div>
   </div>
-</div>
 
 <body>
   <!-- Header & Navbar -->
@@ -47,6 +46,34 @@
     </div>
   </section>
 
+  <!-- Navegação Sticky -->
+  <nav class="sticky-menu-nav" id="stickyMenuNav">
+    <div class="sticky-nav-container">
+      <ul class="sticky-nav-list">
+        <li class="sticky-nav-item">
+          <a href="#menu" class="sticky-nav-link active" data-section="menu">
+            🍔 Hambúrguers
+          </a>
+        </li>
+        <li class="sticky-nav-item">
+          <a href="#sides" class="sticky-nav-link" data-section="sides">
+            🍟 Acompanhamentos
+          </a>
+        </li>
+        <li class="sticky-nav-item">
+          <a href="#drinks" class="sticky-nav-link" data-section="drinks">
+            🥤 Bebidas
+          </a>
+        </li>
+        <li class="sticky-nav-item">
+          <a href="#sauces" class="sticky-nav-link" data-section="sauces">
+            🧄 Molhos
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
   <!-- Cart Section -->
   <section class="cart-section">
     <div class="cart-container" id="cart">
@@ -56,7 +83,7 @@
   </section>
 
   <!-- Menu Section -->
-  <section class="menu-section" role="region" aria-labelledby="menu-title">
+  <section class="menu-section section-offset" id="menu" role="region" aria-labelledby="menu-title">
     <h2 class="menu-title">Cardápio</h2>
 
     <div class="menu-item-container">
@@ -137,7 +164,7 @@
   </section>
 
   <!-- Sides Section -->
-  <section class="sides-section">
+  <section class="sides-section section-offset" id="sides">
     <h2 class="sides-title">Acompanhamentos</h2>
 
     <div class="sides-item-container">
@@ -182,7 +209,7 @@
   </section>
 
   <!-- Drinks Section -->
-  <section class="drinks-section">
+  <section class="drinks-section section-offset" id="drinks">
     <h2 class="drinks-title">Bebidas</h2>
 
     <div class="drinks-item-container">
@@ -216,11 +243,10 @@
         <a href="#" class="button">Adicionar</a>
       </div>
     </div>
-    </div>
   </section>
 
   <!-- Sauces Section -->
-  <section class="sauces-section">
+  <section class="sauces-section section-offset" id="sauces">
     <h2 class="sauces-title">Molhos</h2>
 
     <div class="sauces-item-container">

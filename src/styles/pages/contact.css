@@ -1,133 +1,352 @@
+/* Container principal */
 .contact-page {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
+  background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+  min-height: calc(100vh - 200px);
+  padding: 60px 20px;
 }
 
 .contact-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  animation: fadeInUp 0.6s ease-out;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
   max-width: 1200px;
-  width: 100%;
+  overflow: hidden;
 }
 
-.contact-left,
-.contact-right {
-  flex: 1 1 45%;
-}
-
+/* Lado esquerdo - Informações */
 .contact-left {
-  padding: 0 4rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  position: relative;
 }
 
-/* Contact Left Section */
+/* Padrão decorativo */
+.contact-left::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  content: '';
+  inset: 0;
+  opacity: 0.3;
+  position: absolute;
+}
+
+.contact-left > * {
+  position: relative;
+  z-index: 1;
+}
+
 .contact-left h2 {
-  text-transform: uppercase;
-  color: #444;
-  text-align: center;
-  font-size: calc(0.1rem + 2vw);
+  color: white;
+  font-family: var(--font-theburguer);
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  text-align: left;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Lista de contatos */
 .contact-icons {
   list-style: none;
   padding: 0;
 }
 
 .contact-icons li {
-  margin: 2rem 0;
+  margin-bottom: 24px;
+  transform: translateX(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-icons li:hover {
+  transform: translateX(10px);
 }
 
 .contact-icons a {
   align-items: center;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  color: inherit;
-  cursor: pointer;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: white;
   display: flex;
-  font-size: 1.3rem;
-  gap: 20px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  gap: 16px;
+  padding: 20px 24px;
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.contact-icons li:nth-child(1) a:hover {
-  background-color: #25d366;
-}
-
-.contact-icons li:nth-child(2) a:hover {
-  background-color: #833ab4;
-}
-
-.contact-icons li:nth-child(3) a:hover {
-  background-color: #db4437;
+.contact-icons a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .contact-icons img {
-  margin-left: 4px;
+  background: white;
   border-radius: 50%;
-  height: 20px;
-  width: 20px;
+  height: 32px;
+  padding: 6px;
+  width: 32px;
 }
 
-/* Contact Right Section */
-.contact-right button {
-  background-color: var(--color-primary);
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  padding: 10px 15px;
-}
-
-.contact-right button:hover {
-  background-color: var(--color-secondary);
+/* Lado direito - Formulário */
+.contact-right {
+  background: white;
+  padding: 60px;
 }
 
 .contact-right form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
+}
+
+.contact-right label {
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: -12px;
+  text-transform: uppercase;
 }
 
 .contact-right input,
 .contact-right textarea {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 15px;
-  padding: 10px;
+  background: #f8f8f8;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 16px 20px;
+  transition: all 0.3s ease;
   width: 100%;
 }
 
-.contact-right label {
-  font-weight: bold;
+.contact-right input:focus,
+.contact-right textarea:focus {
+  background: white;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(192, 57, 43, 0.1);
+  outline: none;
 }
 
-/* Responsive Design */
-@media (max-width: 788px) {
+.contact-right textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Botão profissional */
+.contact-right button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  padding: 18px 32px;
+  position: relative;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.contact-right button::before {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+  border-radius: 10px;
+  content: '';
+  inset: 0;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 0.3s ease;
+}
+
+.contact-right button:hover {
+  box-shadow: 0 8px 24px rgba(192, 57, 43, 0.3);
+  transform: translateY(-2px);
+}
+
+.contact-right button:hover::before {
+  opacity: 1;
+}
+
+.contact-right button:active {
+  transform: translateY(0);
+}
+
+.contact-right button > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Seção do mapa */
+.contact-map {
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin: 40px auto 0;
+  max-width: 1200px;
+  overflow: hidden;
+}
+
+.contact-map iframe {
+  border: none;
+  display: block;
+  filter: grayscale(20%);
+  height: 400px;
+  transition: filter 0.3s ease;
+  width: 100%;
+}
+
+.contact-map:hover iframe {
+  filter: grayscale(0%);
+}
+
+/* Estados de validação */
+.contact-right input:valid,
+.contact-right textarea:valid {
+  border-color: #27ae60;
+}
+
+.contact-right input:invalid:not(:placeholder-shown),
+.contact-right textarea:invalid:not(:placeholder-shown) {
+  border-color: #e74c3c;
+}
+
+/* Animações de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 968px) {
   .contact-container {
-    align-items: center;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+  }
+
+  .contact-left {
+    border-radius: 20px 20px 0 0;
+    padding: 40px;
+  }
+
+  .contact-right {
+    border-radius: 0 0 20px 20px;
+    padding: 40px;
+  }
+
+  .contact-left h2 {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-page {
+    padding: 30px 15px;
   }
 
   .contact-left,
   .contact-right {
-    flex: 1 1 100%;
-    width: 80%;
-  }
-
-  .contact-left {
-    padding: 0;
-    margin-bottom: 3rem;
+    padding: 30px 20px;
   }
 
   .contact-left h2 {
-    font-size: calc(0.6rem + 2vw);
+    font-size: 1.5rem;
+    margin-bottom: 30px;
   }
 
-  .contact-icons li a {
-    font-size: calc(0.6rem + 1vw);
+  .contact-icons a {
+    font-size: 1rem;
+    padding: 16px 20px;
+  }
+
+  .contact-icons img {
+    height: 24px;
+    width: 24px;
+  }
+
+  .contact-right input,
+  .contact-right textarea {
+    font-size: 15px;
+    padding: 14px 16px;
+  }
+
+  .contact-right button {
+    font-size: 15px;
+    padding: 16px 24px;
+  }
+
+  .contact-map iframe {
+    height: 300px;
+  }
+}
+
+/* Efeito de loading no botão */
+.contact-right button.loading {
+  color: transparent;
+  pointer-events: none;
+}
+
+.contact-right button.loading::after {
+  animation: spin 1s linear infinite;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  content: '';
+  height: 20px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Tooltip de sucesso */
+.form-success {
+  animation: slideDown 0.4s ease-out;
+  background: #27ae60;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  left: 50%;
+  padding: 12px 24px;
+  position: fixed;
+  top: 20px;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
 }

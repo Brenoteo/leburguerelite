@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 /* Layout */
 .menu-title,
 .sides-title,
@@ -236,6 +240,137 @@
   color: #333;
   font-size: 1rem;
   text-transform: uppercase;
+}
+
+/* Navegação Sticky */
+.sticky-menu-nav {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  border-bottom: 3px solid #e63946;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  transition: all 0.3s ease;
+  z-index: 998;
+}
+
+.sticky-menu-nav.scrolled {
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.sticky-nav-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.sticky-nav-list {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sticky-nav-item {
+  position: relative;
+}
+
+.sticky-nav-link {
+  border-radius: 8px;
+  color: #333;
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  overflow: hidden;
+  padding: 16px 24px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sticky-nav-link::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  content: "";
+  height: 100%;
+  left: -100%;
+  position: absolute;
+  top: 0;
+  transition: left 0.5s;
+  width: 100%;
+}
+
+.sticky-nav-link:hover::before {
+  left: 100%;
+}
+
+.sticky-nav-link:hover {
+  background: #c0392b;
+  box-shadow: 0 4px 12px rgba(192, 57, 43, 0.3);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.sticky-nav-link.active {
+  background: #e63946;
+  box-shadow: 0 2px 8px rgba(230, 57, 70, 0.4);
+  color: white;
+}
+
+.sticky-nav-link.active::after {
+  background: #fff;
+  border-radius: 2px;
+  bottom: -3px;
+  content: "";
+  height: 3px;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 12px;
+}
+
+.section-offset {
+  scroll-margin-top: 80px;
+}
+
+@media (max-width: 768px) {
+  .sticky-nav-container {
+    padding: 0 12px;
+  }
+
+  .sticky-nav-list {
+    gap: 4px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .sticky-nav-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sticky-nav-link {
+    font-size: 13px;
+    padding: 12px 16px;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .sticky-nav-link {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
 }
 
 /* Footer */

@@ -26,3 +26,85 @@ document.addEventListener("click", (e) => {
     toggleMenu(false);
   }
 });
+
+// Navegação Sticky
+class StickyMenuNavigation {
+  constructor() {
+    this.nav = document.getElementById('stickyMenuNav');
+    this.links = document.querySelectorAll('.sticky-nav-link');
+    this.sections = document.querySelectorAll('.section-offset');
+    this.initialize();
+  }
+
+  initialize() {
+    if (!this.nav) return;
+
+    this.bindEvents();
+    this.updateActiveLink();
+  }
+
+  bindEvents() {
+    window.addEventListener('scroll', () => {
+      this.handleScroll();
+      this.updateActiveLink();
+    });
+
+    this.links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        this.scrollToSection(targetId);
+      });
+    });
+  }
+
+  handleScroll() {
+    if (window.scrollY > 50) {
+      this.nav.classList.add('scrolled');
+    } else {
+      this.nav.classList.remove('scrolled');
+    }
+  }
+
+  scrollToSection(sectionId) {
+    const target = document.getElementById(sectionId);
+    if (target) {
+      const navHeight = this.nav.offsetHeight;
+      const targetPosition = target.offsetTop - navHeight - 20;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  updateActiveLink() {
+    const scrollPosition = window.scrollY + this.nav.offsetHeight + 100;
+
+    let activeSection = null;
+
+    this.sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        activeSection = section.id;
+      }
+    });
+
+    this.links.forEach(link => {
+      const targetSection = link.getAttribute('data-section');
+
+      if (targetSection === activeSection) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  new StickyMenuNavigation();
+});
