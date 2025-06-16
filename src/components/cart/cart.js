@@ -16,7 +16,7 @@ class CartManager {
         this.showCartModal();
         return;
       }
-      
+
       // Para os itens
       const item = e.target.closest(".menu-item, .sides-item, .drinks-item, .sauces-item");
       if (item) {
@@ -64,10 +64,10 @@ class CartManager {
   showFeedback(message, type = 'success') {
     const modal = document.querySelector("#cart-modal");
     const text = modal.querySelector(".modal-text");
-    
+
     text.textContent = type === 'adicionado' ? `${message} foi adicionado ao carrinho.` : message;
     modal.classList.add("show");
-    
+
     if (type === 'erro') {
       modal.style.backgroundColor = 'rgba(231, 76, 60, 0.9)';
     } else {
@@ -81,7 +81,7 @@ class CartManager {
 
   showCartModal() {
     let existingModal = document.querySelector('.cart-detail-modal');
-    
+
     // Se modal existe, apenas atualiza conteúdo
     if (existingModal) {
       this.updateModalContent(existingModal);
@@ -90,15 +90,15 @@ class CartManager {
 
     const modal = document.createElement('div');
     modal.className = 'cart-detail-modal';
-    
+
     modal.innerHTML = this.generateModalContent();
     document.body.appendChild(modal);
-    
+
     // Animação de entrada suave
     requestAnimationFrame(() => {
       modal.classList.add('show');
     });
-    
+
     this.bindModalEvents(modal);
   }
 
@@ -121,8 +121,8 @@ class CartManager {
         </div>
         
         <div class="cart-body">
-          ${hasItems ? 
-            this.items.map((item, index) => `
+          ${hasItems ?
+        this.items.map((item, index) => `
               <div class="cart-item" data-index="${index}">
                 <div class="cart-item-content">
                   <img src="${item.image}" alt="${item.name}" class="item-image">
@@ -143,12 +143,12 @@ class CartManager {
                   </div>
                 </div>
               </div>
-            `).join('') 
-            : `<div class="empty-cart">
+            `).join('')
+        : `<div class="empty-cart">
                  <span class="empty-cart-icon">🛒</span>
                  <p class="empty-cart-text">Seu carrinho está vazio</p>
                </div>`
-          }
+      }
         </div>
         
         ${hasItems ? `
@@ -189,13 +189,13 @@ class CartManager {
     if (overlay) {
       overlay.addEventListener('click', () => this.closeModal(modal));
     }
-    
+
     // Fechar modal - botão
     const closeBtn = modal.querySelector('.close-cart');
     if (closeBtn) {
       closeBtn.addEventListener('click', () => this.closeModal(modal));
     }
-    
+
     // Botões de quantidade
     modal.querySelectorAll('.quantity-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -207,7 +207,7 @@ class CartManager {
         }
       });
     });
-    
+
     // Observações - usando change ao invés de input
     modal.querySelectorAll('.item-notes').forEach(textarea => {
       textarea.addEventListener('change', (e) => {
@@ -215,7 +215,7 @@ class CartManager {
         this.items[index].notes = e.target.value;
       });
     });
-    
+
     // Limpar carrinho
     const clearBtn = modal.querySelector('.btn-clear');
     if (clearBtn) {
@@ -226,7 +226,7 @@ class CartManager {
         }
       });
     }
-    
+
     // Finalizar pedido
     const checkoutBtn = modal.querySelector('.btn-checkout');
     if (checkoutBtn) {
@@ -245,7 +245,7 @@ class CartManager {
       item.quantity++;
       this.updateUI();
       this.vibrateDevice();
-      
+
       // Atualiza modal se estiver aberto
       const modal = document.querySelector('.cart-detail-modal');
       if (modal) this.updateModalContent(modal);
@@ -264,7 +264,7 @@ class CartManager {
       }
       this.updateUI();
       this.vibrateDevice();
-      
+
       // Atualiza modal se estiver aberto
       const modal = document.querySelector('.cart-detail-modal');
       if (modal) this.updateModalContent(modal);
@@ -285,14 +285,14 @@ class CartManager {
   updateModalContent(modal) {
     const content = modal.querySelector('.cart-content');
     const oldScrollTop = content.querySelector('.cart-body')?.scrollTop || 0;
-    
+
     // Atualiza apenas o conteúdo interno
     content.innerHTML = this.generateModalContent().match(/<div class="cart-content">([\s\S]*)<\/div>/)[1];
-    
+
     // Restaura posição do scroll
     const newBody = content.querySelector('.cart-body');
     if (newBody) newBody.scrollTop = oldScrollTop;
-    
+
     // Re-bind eventos
     this.bindModalEvents(modal);
   }
@@ -304,11 +304,6 @@ class CartManager {
   }
 
 
-  
-
-
-
-  
 
 
 
@@ -334,12 +329,17 @@ class CartManager {
 
 
 
-checkout(modal) {
-  this.cartHTML = modal.querySelector('.cart-content').innerHTML;
-  
-  const content = modal.querySelector('.cart-content');
-  
-  content.innerHTML = `
+
+
+
+
+
+  checkout(modal) {
+    this.cartHTML = modal.querySelector('.cart-content').innerHTML;
+
+    const content = modal.querySelector('.cart-content');
+
+    content.innerHTML = `
     <div class="cart-header">
       <button class="back-to-cart">← Voltar</button>
       <h2>Finalizar Pedido</h2>
@@ -367,8 +367,9 @@ checkout(modal) {
       <!-- CEP que busca automático -->
       <input type="text" id="cep" placeholder="CEP" maxlength="9">
       
-      <input type="text" id="endereco" placeholder="Endereço e número" required>
+      <input type="text" id="endereco" placeholder="Endereço" required>
       <input type="text" id="bairro" placeholder="Bairro" required>
+      <input type="text" id="numero" placeholder="Número" required>
       <textarea id="referencia" placeholder="Referência (opcional)" rows="2"></textarea>
       
       <h3>Pagamento</h3>
@@ -381,88 +382,89 @@ checkout(modal) {
     </div>
     
     <div class="cart-footer">
-      <button class="btn-send-order">Confirmar Pedido</button>
+      <button class="btn-send-order">Finalizar Pedido</button>
     </div>
   `;
-  
-  this.bindCheckoutEvents(modal);
-}
 
-bindCheckoutEvents(modal) {
-  // Voltar pro carrinho
-  modal.querySelector('.back-to-cart').addEventListener('click', () => {
-    modal.querySelector('.cart-content').innerHTML = this.cartHTML;
-    this.bindModalEvents(modal);
-  });
-  
-  // Fechar modal
-  modal.querySelector('.close-cart').addEventListener('click', () => {
-    this.closeModal(modal);
-  });
-  
-  // CEP automático
-  modal.querySelector('#cep').addEventListener('input', async (e) => {
-    let cep = e.target.value.replace(/\D/g, '');
-    
-    // Formata com hífen
-    if (cep.length > 5) {
-      e.target.value = cep.slice(0,5) + '-' + cep.slice(5,8);
-    }
-    
-    // Busca quando digita 8 números
-    if (cep.length === 8) {
-      try {
-        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-        const data = await response.json();
-        
-        if (!data.erro) {
-          document.getElementById('endereco').value = data.logradouro;
-          document.getElementById('bairro').value = data.bairro;
-          document.getElementById('endereco').focus(); // Foca pra digitar o número
-        }
-      } catch (error) {
-        // Ignora erro, usuário preenche manual
-      }
-    }
-  });
-  
-  // Enviar pedido
-  modal.querySelector('.btn-send-order').addEventListener('click', () => {
-    const nome = document.getElementById('nome').value;
-    const telefone = document.getElementById('telefone').value;
-    const cep = document.getElementById('cep').value;
-    const endereco = document.getElementById('endereco').value;
-    const bairro = document.getElementById('bairro').value;
-    const referencia = document.getElementById('referencia').value;
-    const pagamento = document.getElementById('pagamento').value;
-    
-    if (!nome || !telefone || !endereco || !bairro) {
-      alert('Preencha todos os campos!');
-      return;
-    }
-    
-    let msg = `*PEDIDO*\n\n`;
-    msg += `Nome: ${nome}\n`;
-    msg += `Tel: ${telefone}\n`;
-    if (cep) msg += `CEP: ${cep}\n`;
-    msg += `Endereço: ${endereco}, ${bairro}\n`;
-    if (referencia) msg += `Ref: ${referencia}\n`;
-    msg += `Pagamento: ${pagamento}\n\n`;
-    
-    msg += `*ITENS:*\n`;
-    this.items.forEach(item => {
-      msg += `${item.quantity}x ${item.name} = R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+    this.bindCheckoutEvents(modal);
+  }
+
+  bindCheckoutEvents(modal) {
+    // Voltar pro carrinho
+    modal.querySelector('.back-to-cart').addEventListener('click', () => {
+      modal.querySelector('.cart-content').innerHTML = this.cartHTML;
+      this.bindModalEvents(modal);
     });
-    
-    msg += `\n*TOTAL: R$ ${(this.getSubtotal() + this.deliveryFee).toFixed(2)}*`;
-    
-    const numero = '5511999999999'; // NÚMERO DA LOJA
-    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`);
-    
-    this.clearCart();
-    this.closeModal(modal);
-  });
-}
+
+    // Fechar modal
+    modal.querySelector('.close-cart').addEventListener('click', () => {
+      this.closeModal(modal);
+    });
+
+    // CEP automático
+    modal.querySelector('#cep').addEventListener('input', async (e) => {
+      let cep = e.target.value.replace(/\D/g, '');
+
+      // Formata com hífen
+      if (cep.length > 5) {
+        e.target.value = cep.slice(0, 5) + '-' + cep.slice(5, 8);
+      }
+
+      // Busca quando digita 8 números
+      if (cep.length === 8) {
+        try {
+          const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+          const data = await response.json();
+
+          if (!data.erro) {
+            document.getElementById('endereco').value = data.logradouro;
+            document.getElementById('bairro').value = data.bairro;
+            document.getElementById('endereco').focus(); // Foca pra digitar o número
+          }
+        } catch (error) {
+          // Ignora erro, usuário preenche manual
+        }
+      }
+    });
+
+    // Enviar pedido
+    modal.querySelector('.btn-send-order').addEventListener('click', () => {
+      const nome = document.getElementById('nome').value;
+      const telefone = document.getElementById('telefone').value;
+      const cep = document.getElementById('cep').value;
+      const endereco = document.getElementById('endereco').value;
+      const bairro = document.getElementById('bairro').value;
+      const numeroEnd = document.getElementById('numero').value;
+      const referencia = document.getElementById('referencia').value;
+      const pagamento = document.getElementById('pagamento').value;
+
+      if (!nome || !telefone || !endereco || !bairro) {
+        alert('Preencha todos os campos!');
+        return;
+      }
+
+      let msg = `*PEDIDO*\n\n`;
+      msg += `Nome: ${nome}\n`;
+      msg += `Tel: ${telefone}\n`;
+      if (cep) msg += `CEP: ${cep}\n`;
+      msg += `Endereço: ${endereco}, ${bairro}, Nº ${numeroEnd}\n`;
+      if (referencia) msg += `Ref: ${referencia}\n`;
+      msg += `Pagamento: ${pagamento}\n\n`;
+
+      msg += `*ITENS:*\n`;
+      this.items.forEach(item => {
+        msg += `${item.quantity}x ${item.name} = R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+      });
+
+      msg += `\n*TOTAL: R$ ${(this.getSubtotal() + this.deliveryFee).toFixed(2)}*`;
+
+      const numero = '5511999999999'; // NÚMERO DA LOJA
+      window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`);
+
+      this.clearCart();
+      this.closeModal(modal);
+    });
+  }
 
 
 
@@ -519,10 +521,10 @@ bindCheckoutEvents(modal) {
       if (item.notes) text += `\n   Obs: ${item.notes}`;
       return text;
     }).join('\n');
-    
+
     const subtotal = this.getSubtotal();
     const total = subtotal + this.deliveryFee;
-    
+
     return `*NOVO PEDIDO*\n\n${items}\n\nSubtotal: R$ ${subtotal.toFixed(2)}\nEntrega: R$ ${this.deliveryFee.toFixed(2)}\n*Total: R$ ${total.toFixed(2)}*`;
   }
 
