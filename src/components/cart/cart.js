@@ -303,37 +303,6 @@ class CartManager {
     this.showFeedback('Carrinho limpo', 'info');
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   checkout(modal) {
     this.cartHTML = modal.querySelector('.cart-content').innerHTML;
 
@@ -444,77 +413,382 @@ class CartManager {
         return;
       }
 
-      let msg = `*PEDIDO*\n\n`;
-      msg += `Nome: ${nome}\n`;
-      msg += `Tel: ${telefone}\n`;
-      if (cep) msg += `CEP: ${cep}\n`;
-      msg += `Endereço: ${endereco}, ${bairro}, Nº ${numeroEnd}\n`;
-      if (referencia) msg += `Ref: ${referencia}\n`;
-      msg += `Pagamento: ${pagamento}\n\n`;
+      // Salva dados do pedido para usar depois
+      this.pedidoData = {
+        nome, telefone, cep, endereco, bairro,
+        numeroEnd, referencia, pagamento
+      };
 
-      msg += `*ITENS:*\n`;
-      this.items.forEach(item => {
-        msg += `${item.quantity}x ${item.name} = R$ ${(item.price * item.quantity).toFixed(2)}\n`;
-      });
-
-      msg += `\n*TOTAL: R$ ${(this.getSubtotal() + this.deliveryFee).toFixed(2)}*`;
-
-      const numero = '5511999999999'; // NÚMERO DA LOJA
-      window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`);
-
-      this.clearCart();
-      this.closeModal(modal);
+      // Mostra tela de progresso
+      this.showOrderProgress(modal);
     });
   }
 
+  showOrderProgress(modal) {
+    const content = modal.querySelector('.cart-content');
 
+    content.innerHTML = `
+    <div class="cart-header">
+      <h2>Acompanhando seu Pedido</h2>
+    </div>
+    
+    <div class="order-progress-container">
+      <div class="progress-timeline">
+        <div class="progress-line"></div>
+        
+        <div class="progress-step active" data-step="1">
+          <div class="step-icon">⏳</div>
+          <div class="step-info">
+            <h3>Aguardando confirmação</h3>
+            <p>Verificando seu pedido...</p>
+          </div>
+        </div>
+        
+        <div class="progress-step" data-step="2">
+          <div class="step-icon">👨‍🍳</div>
+          <div class="step-info">
+            <h3>Em preparo</h3>
+            <p>Preparando com carinho</p>
+          </div>
+        </div>
+        
+        <div class="progress-step" data-step="3">
+          <div class="step-icon">🛵</div>
+          <div class="step-info">
+            <h3>Saiu para entrega</h3>
+            <p>A caminho!</p>
+          </div>
+        </div>
+        
+        <div class="progress-step" data-step="4">
+          <div class="step-icon">✅</div>
+          <div class="step-info">
+            <h3>Pedido confirmado</h3>
+            <p>Redirecionando...</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="progress-message">
+        <h2 id="progress-title">Aguardando confirmação do estabelecimento</h2>
+        <p id="progress-subtitle">Seu pedido está sendo processado</p>
+      </div>
+    </div>
+  `;
 
+    this.animateProgress(modal);
+  }
 
+  animateProgress(modal) {
+    const steps = modal.querySelectorAll('.progress-step');
+    const progressLine = modal.querySelector('.progress-line');
+    const progressTitle = modal.querySelector('#progress-title');
+    const progressSubtitle = modal.querySelector('#progress-subtitle');
 
+    const messages = [
+      {
+        title: "Aguardando confirmação do estabelecimento",
+        subtitle: "Seu pedido está sendo processado"
+      },
+      {
+        title: "Seu pedido está em preparo",
+        subtitle: "Nossos chefs estão preparando tudo"
+      },
+      {
+        title: "Pedido saiu para entrega",
+        subtitle: "Em breve chegará até você"
+      },
+      {
+        title: "Pedido confirmado com sucesso!",
+        subtitle: "Obrigado por testar o projeto!"
+      }
+    ];
 
+    let currentStep = 0;
 
+    const interval = setInterval(() => {
+      currentStep++;
 
+      if (currentStep < 4) {
+        // Ativa próximo step
+        steps[currentStep].classList.add('active');
+        steps[currentStep - 1].classList.add('completed');
 
+        // Atualiza linha de progresso
+        progressLine.style.height = `${(currentStep / 3) * 100}%`;
 
+        // Atualiza mensagens
+        progressTitle.textContent = messages[currentStep].title;
+        progressSubtitle.textContent = messages[currentStep].subtitle;
 
+      } else {
+        clearInterval(interval);
 
+        // Após completar, envia pro WhatsApp
+        setTimeout(() => {
+          this.sendToWhatsApp();
+        }, 1500);
+      }
+    }, 3000); // 3 segundos entre cada etapa
+  }
 
+  showOrderProgress(modal) {
+    const content = modal.querySelector('.cart-content');
 
+    content.innerHTML = `
+    <div class="cart-header">
+      <h2>Acompanhando seu Pedido</h2>
+    </div>
+    
+    <div class="order-progress-container">
+      <div class="progress-timeline">
+        <div class="progress-line"></div>
+        
+        <div class="progress-step active" data-step="1">
+          <div class="step-icon">⏳</div>
+          <div class="step-info">
+            <h3>Aguardando confirmação</h3>
+            <p>Verificando seu pedido...</p>
+          </div>
+        </div>
+        
+        <div class="progress-step" data-step="2">
+          <div class="step-icon">👨‍🍳</div>
+          <div class="step-info">
+            <h3>Em preparo</h3>
+            <p>Preparando com carinho</p>
+          </div>
+        </div>
+        
+        <div class="progress-step" data-step="3">
+          <div class="step-icon">🛵</div>
+          <div class="step-info">
+            <h3>Saiu para entrega</h3>
+            <p>A caminho!</p>
+          </div>
+        </div>
+        
+        <div class="progress-step" data-step="4">
+          <div class="step-icon">✅</div>
+          <div class="step-info">
+            <h3>Pedido confirmado</h3>
+            <p>Redirecionando...</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="progress-message">
+        <h2 id="progress-title">Aguardando confirmação do estabelecimento</h2>
+        <p id="progress-subtitle">Seu pedido está sendo processado</p>
+      </div>
+    </div>
+  `;
 
+    this.animateProgress(modal);
+  }
 
+  animateProgress(modal) {
+    const steps = modal.querySelectorAll('.progress-step');
+    const progressLine = modal.querySelector('.progress-line');
+    const progressTitle = modal.querySelector('#progress-title');
+    const progressSubtitle = modal.querySelector('#progress-subtitle');
 
+    const messages = [
+      {
+        title: "Aguardando confirmação do estabelecimento",
+        subtitle: "Seu pedido está sendo processado"
+      },
+      {
+        title: "Seu pedido está em preparo",
+        subtitle: "Nossos chefs estão preparando tudo"
+      },
+      {
+        title: "Pedido saiu para entrega",
+        subtitle: "Em breve chegará até você"
+      },
+      {
+        title: "Pedido confirmado com sucesso!",
+        subtitle: "Obrigado por testar o projeto!..."
+      }
+    ];
 
+    let currentStep = 0;
 
+    const interval = setInterval(() => {
+      currentStep++;
 
+      if (currentStep < 4) {
+        // Ativa próximo step
+        steps[currentStep].classList.add('active');
+        steps[currentStep - 1].classList.add('completed');
 
+        // Atualiza linha de progresso
+        progressLine.style.height = `${(currentStep / 3) * 100}%`;
 
+        // Atualiza mensagens
+        progressTitle.textContent = messages[currentStep].title;
+        progressSubtitle.textContent = messages[currentStep].subtitle;
 
+      } else {
+        clearInterval(interval);
 
+        // Após completar, envia pro WhatsApp
+        setTimeout(() => {
+          this.sendToWhatsApp();
+        }, 1500);
+      }
+    }, 3000); // 3 segundos entre cada etapa
+  }
 
+  showOrderProgress(modal) {
+    const content = modal.querySelector('.cart-content');
 
+    content.innerHTML = `
+    <div class="cart-header">
+      <h2>Acompanhando seu Pedido</h2>
+      <button class="close-cart" aria-label="Fechar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="order-progress-container">
+      <div class="progress-timeline">
+        <div class="progress-line"></div>
+        
+        <div class="progress-step active" data-step="1">
+          <div class="step-icon">⏳</div>
+          <div class="step-info">
+            <h3>Aguardando confirmação</h3>
+            <p>Verificando seu pedido...</p>
+          </div>
+        </div>
+        
+        <div class="progress-step" data-step="2">
+          <div class="step-icon">👨‍🍳</div>
+          <div class="step-info">
+            <h3>Em preparo</h3>
+            <p>Preparando com carinho</p>
+          </div>
+        </div>
+        
+        <div class="progress-step" data-step="3">
+          <div class="step-icon">🛵</div>
+          <div class="step-info">
+            <h3>Saiu para entrega</h3>
+            <p>A caminho!</p>
+          </div>
+        </div>
+        
+        <div class="progress-step" data-step="4">
+          <div class="step-icon">✅</div>
+          <div class="step-info">
+            <h3>Pedido confirmado</h3>
+            <p>Redirecionando...</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="progress-message">
+        <h2 id="progress-title">Aguardando confirmação do estabelecimento</h2>
+        <p id="progress-subtitle">Seu pedido está sendo processado</p>
+      </div>
+    </div>
+  `;
+    // Adicione estas linhas logo após content.innerHTML = `...`;
 
+    // Bind do botão fechar
+    const closeBtn = modal.querySelector('.close-cart');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        if (confirm('Deseja cancelar o acompanhamento do pedido?')) {
+          this.closeModal(modal);
+        }
+      });
+    }
+    this.animateProgress(modal);
+  }
 
+  animateProgress(modal) {
+    const steps = modal.querySelectorAll('.progress-step');
+    const progressLine = modal.querySelector('.progress-line');
+    const progressTitle = modal.querySelector('#progress-title');
+    const progressSubtitle = modal.querySelector('#progress-subtitle');
 
+    const messages = [
+      {
+        title: "Aguardando confirmação do estabelecimento",
+        subtitle: "Seu pedido está sendo processado"
+      },
+      {
+        title: "Seu pedido está em preparo",
+        subtitle: "Nossos chefs estão preparando tudo"
+      },
+      {
+        title: "Pedido saiu para entrega",
+        subtitle: "Em breve chegará até você"
+      },
+      {
+        title: "Pedido confirmado com sucesso!",
+        subtitle: "Obrigado por testar o projeto!"
+      }
+    ];
 
+    let currentStep = 0;
 
+    const interval = setInterval(() => {
+      currentStep++;
 
+      if (currentStep < 4) {
+        // Ativa próximo step
+        steps[currentStep].classList.add('active');
+        steps[currentStep - 1].classList.add('completed');
 
+        // Atualiza linha de progresso
+        progressLine.style.height = `${(currentStep / 3) * 100}%`;
 
+        // Atualiza mensagens
+        progressTitle.textContent = messages[currentStep].title;
+        progressSubtitle.textContent = messages[currentStep].subtitle;
 
+      } else {
+        clearInterval(interval);
 
+        // Após completar, envia pro WhatsApp
+        setTimeout(() => {
+          this.sendToWhatsApp();
+        }, 1500);
+      }
+    }, 3000); // 3 segundos entre cada etapa
+  }
 
+  sendToWhatsApp() {
+    const data = this.pedidoData;
 
+    let msg = `*PEDIDO*\n\n`;
+    msg += `Nome: ${data.nome}\n`;
+    msg += `Tel: ${data.telefone}\n`;
+    if (data.cep) msg += `CEP: ${data.cep}\n`;
+    msg += `Endereço: ${data.endereco}, ${data.bairro}, Nº ${data.numeroEnd}\n`;
+    if (data.referencia) msg += `Ref: ${data.referencia}\n`;
+    msg += `Pagamento: ${data.pagamento}\n\n`;
 
+    msg += `*ITENS:*\n`;
+    this.items.forEach(item => {
+      msg += `${item.quantity}x ${item.name} = R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+      if (item.notes) msg += `   Obs: ${item.notes}\n`;
+    });
 
+    msg += `\n*TOTAL: R$ ${(this.getSubtotal() + this.deliveryFee).toFixed(2)}*`;
 
+    const numero = '5511999999999'; // NÚMERO DA LOJA
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`);
 
-
-
-
-
-
-
-
+    this.clearCart();
+    window.location.reload(); // Recarrega página
+  }
 
   formatOrder() {
     const items = this.items.map(item => {
