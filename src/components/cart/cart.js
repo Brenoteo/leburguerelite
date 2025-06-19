@@ -1,8 +1,26 @@
+// Debounce previne múltiplas chamadas em digitação rápida
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
 class CartManager {
   constructor() {
     this.items = [];
-    this.deliveryFee = 3.00; // Taxa de entrega
+    this.deliveryFee = 3.00;
     this.maxQuantity = 99;
+    this.state = {
+      cartHTML: '',
+      pedidoData: null,
+      modalRef: null
+    };
     this.initialize();
   }
 
@@ -23,6 +41,12 @@ class CartManager {
         e.preventDefault();
         this.addItem(item);
       }
+    });
+
+    // Limpar modals ao fechar página
+    window.addEventListener('beforeunload', () => {
+      const modal = document.querySelector('.cart-detail-modal');
+      if (modal) modal.remove();
     });
   }
 
@@ -184,20 +208,28 @@ class CartManager {
   }
 
   bindModalEvents(modal) {
+    // Cache de elementos para performance
+    const elements = {
+      overlay: modal.querySelector('.cart-overlay'),
+      closeBtn: modal.querySelector('.close-cart'),
+      clearBtn: modal.querySelector('.btn-clear'),
+      checkoutBtn: modal.querySelector('.btn-checkout'),
+      quantityBtns: modal.querySelectorAll('.quantity-btn'),
+      notesFields: modal.querySelectorAll('.item-notes')
+    };
+
     // Fechar modal - overlay
-    const overlay = modal.querySelector('.cart-overlay');
-    if (overlay) {
-      overlay.addEventListener('click', () => this.closeModal(modal));
+    if (elements.overlay) {
+      elements.overlay.addEventListener('click', () => this.closeModal(modal));
     }
 
     // Fechar modal - botão
-    const closeBtn = modal.querySelector('.close-cart');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => this.closeModal(modal));
+    if (elements.closeBtn) {
+      elements.closeBtn.addEventListener('click', () => this.closeModal(modal));
     }
 
     // Botões de quantidade
-    modal.querySelectorAll('.quantity-btn').forEach(btn => {
+    elements.quantityBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         const name = e.target.dataset.name;
         if (e.target.classList.contains('plus')) {
@@ -208,18 +240,21 @@ class CartManager {
       });
     });
 
-    // Observações - usando change ao invés de input
-    modal.querySelectorAll('.item-notes').forEach(textarea => {
-      textarea.addEventListener('change', (e) => {
+    // Observações com debounce
+    elements.notesFields.forEach(textarea => {
+      const updateNotes = debounce((e) => {
         const index = parseInt(e.target.dataset.index);
-        this.items[index].notes = e.target.value;
-      });
+        if (this.items[index]) {
+          this.items[index].notes = e.target.value;
+        }
+      }, 300);
+
+      textarea.addEventListener('input', updateNotes);
     });
 
     // Limpar carrinho
-    const clearBtn = modal.querySelector('.btn-clear');
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
+    if (elements.clearBtn) {
+      elements.clearBtn.addEventListener('click', () => {
         if (confirm('Deseja realmente limpar o carrinho?')) {
           this.clearCart();
           this.closeModal(modal);
@@ -228,9 +263,8 @@ class CartManager {
     }
 
     // Finalizar pedido
-    const checkoutBtn = modal.querySelector('.btn-checkout');
-    if (checkoutBtn) {
-      checkoutBtn.addEventListener('click', () => this.checkout(modal));
+    if (elements.checkoutBtn) {
+      elements.checkoutBtn.addEventListener('click', () => this.checkout(modal));
     }
   }
 
@@ -271,17 +305,6 @@ class CartManager {
     }
   }
 
-  animateQuantityChange() {
-    const modal = document.querySelector('.cart-detail-modal');
-    if (modal) {
-      const totalElement = modal.querySelector('.total-value');
-      if (totalElement) {
-        totalElement.classList.add('updating');
-        setTimeout(() => totalElement.classList.remove('updating'), 300);
-      }
-    }
-  }
-
   updateModalContent(modal) {
     const content = modal.querySelector('.cart-content');
     const oldScrollTop = content.querySelector('.cart-body')?.scrollTop || 0;
@@ -304,7 +327,7 @@ class CartManager {
   }
 
   checkout(modal) {
-    this.cartHTML = modal.querySelector('.cart-content').innerHTML;
+    this.state.cartHTML = modal.querySelector('.cart-content').innerHTML;
 
     const content = modal.querySelector('.cart-content');
 
@@ -362,7 +385,7 @@ class CartManager {
   bindCheckoutEvents(modal) {
     // Voltar pro carrinho
     modal.querySelector('.back-to-cart').addEventListener('click', () => {
-      modal.querySelector('.cart-content').innerHTML = this.cartHTML;
+      modal.querySelector('.cart-content').innerHTML = this.state.cartHTML;
       this.bindModalEvents(modal);
     });
 
@@ -375,397 +398,72 @@ class CartManager {
     modal.querySelector('#cep').addEventListener('input', async (e) => {
       let cep = e.target.value.replace(/\D/g, '');
 
+      // Limita a 8 dígitos
+      if (cep.length > 8) {
+        cep = cep.slice(0, 8);
+      }
+
       // Formata com hífen
       if (cep.length > 5) {
         e.target.value = cep.slice(0, 5) + '-' + cep.slice(5, 8);
+      } else {
+        e.target.value = cep;
       }
 
-      // Busca quando digita 8 números
+      // Busca quando completa 8 números
       if (cep.length === 8) {
+        e.target.classList.add('loading');
+
         try {
           const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
           const data = await response.json();
 
           if (!data.erro) {
-            document.getElementById('endereco').value = data.logradouro;
-            document.getElementById('bairro').value = data.bairro;
-            document.getElementById('endereco').focus(); // Foca pra digitar o número
+            document.getElementById('endereco').value = data.logradouro || '';
+            document.getElementById('bairro').value = data.bairro || '';
+            document.getElementById('numero').focus();
           }
         } catch (error) {
-          // Ignora erro, usuário preenche manual
+          console.error('Erro ao buscar CEP:', error);
+        } finally {
+          e.target.classList.remove('loading');
         }
       }
     });
 
     // Enviar pedido
-    modal.querySelector('.btn-send-order').addEventListener('click', () => {
-      const nome = document.getElementById('nome').value;
-      const telefone = document.getElementById('telefone').value;
-      const cep = document.getElementById('cep').value;
-      const endereco = document.getElementById('endereco').value;
-      const bairro = document.getElementById('bairro').value;
-      const numeroEnd = document.getElementById('numero').value;
-      const referencia = document.getElementById('referencia').value;
+    modal.querySelector('.btn-send-order').addEventListener('click', (e) => {
+      // Previne duplo clique
+      if (e.target.disabled) return;
+      e.target.disabled = true;
+
+      const nome = document.getElementById('nome').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+      const cep = document.getElementById('cep').value.trim();
+      const endereco = document.getElementById('endereco').value.trim();
+      const bairro = document.getElementById('bairro').value.trim();
+      const numeroEnd = document.getElementById('numero').value.trim();
+      const referencia = document.getElementById('referencia').value.trim();
       const pagamento = document.getElementById('pagamento').value;
 
-      if (!nome || !telefone || !endereco || !bairro) {
-        alert('Preencha todos os campos!');
+      if (!nome || !telefone || !endereco || !bairro || !numeroEnd) {
+        alert('Preencha todos os campos obrigatórios!');
+        e.target.disabled = false;
         return;
       }
 
-      // Salva dados do pedido para usar depois
-      this.pedidoData = {
+      // Salva dados do pedido
+      this.state.pedidoData = {
         nome, telefone, cep, endereco, bairro,
         numeroEnd, referencia, pagamento
       };
 
-      // Mostra tela de progresso
-      this.showOrderProgress(modal);
+      this.sendToWhatsApp();
     });
   }
 
-  showOrderProgress(modal) {
-    const content = modal.querySelector('.cart-content');
-
-    content.innerHTML = `
-    <div class="cart-header">
-      <h2>Acompanhando seu Pedido</h2>
-    </div>
-    
-    <div class="order-progress-container">
-      <div class="progress-timeline">
-        <div class="progress-line"></div>
-        
-        <div class="progress-step active" data-step="1">
-          <div class="step-icon">⏳</div>
-          <div class="step-info">
-            <h3>Aguardando confirmação</h3>
-            <p>Verificando seu pedido...</p>
-          </div>
-        </div>
-        
-        <div class="progress-step" data-step="2">
-          <div class="step-icon">👨‍🍳</div>
-          <div class="step-info">
-            <h3>Em preparo</h3>
-            <p>Preparando com carinho</p>
-          </div>
-        </div>
-        
-        <div class="progress-step" data-step="3">
-          <div class="step-icon">🛵</div>
-          <div class="step-info">
-            <h3>Saiu para entrega</h3>
-            <p>A caminho!</p>
-          </div>
-        </div>
-        
-        <div class="progress-step" data-step="4">
-          <div class="step-icon">✅</div>
-          <div class="step-info">
-            <h3>Pedido confirmado</h3>
-            <p>Redirecionando...</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="progress-message">
-        <h2 id="progress-title">Aguardando confirmação do estabelecimento</h2>
-        <p id="progress-subtitle">Seu pedido está sendo processado</p>
-      </div>
-    </div>
-  `;
-
-    this.animateProgress(modal);
-  }
-
-  animateProgress(modal) {
-    const steps = modal.querySelectorAll('.progress-step');
-    const progressLine = modal.querySelector('.progress-line');
-    const progressTitle = modal.querySelector('#progress-title');
-    const progressSubtitle = modal.querySelector('#progress-subtitle');
-
-    const messages = [
-      {
-        title: "Aguardando confirmação do estabelecimento",
-        subtitle: "Seu pedido está sendo processado"
-      },
-      {
-        title: "Seu pedido está em preparo",
-        subtitle: "Nossos chefs estão preparando tudo"
-      },
-      {
-        title: "Pedido saiu para entrega",
-        subtitle: "Em breve chegará até você"
-      },
-      {
-        title: "Pedido confirmado com sucesso!",
-        subtitle: "Obrigado por testar o projeto!"
-      }
-    ];
-
-    let currentStep = 0;
-
-    const interval = setInterval(() => {
-      currentStep++;
-
-      if (currentStep < 4) {
-        // Ativa próximo step
-        steps[currentStep].classList.add('active');
-        steps[currentStep - 1].classList.add('completed');
-
-        // Atualiza linha de progresso
-        progressLine.style.height = `${(currentStep / 3) * 100}%`;
-
-        // Atualiza mensagens
-        progressTitle.textContent = messages[currentStep].title;
-        progressSubtitle.textContent = messages[currentStep].subtitle;
-
-      } else {
-        clearInterval(interval);
-
-        // Após completar, envia pro WhatsApp
-        setTimeout(() => {
-          this.sendToWhatsApp();
-        }, 1500);
-      }
-    }, 3000); // 3 segundos entre cada etapa
-  }
-
-  showOrderProgress(modal) {
-    const content = modal.querySelector('.cart-content');
-
-    content.innerHTML = `
-    <div class="cart-header">
-      <h2>Acompanhando seu Pedido</h2>
-    </div>
-    
-    <div class="order-progress-container">
-      <div class="progress-timeline">
-        <div class="progress-line"></div>
-        
-        <div class="progress-step active" data-step="1">
-          <div class="step-icon">⏳</div>
-          <div class="step-info">
-            <h3>Aguardando confirmação</h3>
-            <p>Verificando seu pedido...</p>
-          </div>
-        </div>
-        
-        <div class="progress-step" data-step="2">
-          <div class="step-icon">👨‍🍳</div>
-          <div class="step-info">
-            <h3>Em preparo</h3>
-            <p>Preparando com carinho</p>
-          </div>
-        </div>
-        
-        <div class="progress-step" data-step="3">
-          <div class="step-icon">🛵</div>
-          <div class="step-info">
-            <h3>Saiu para entrega</h3>
-            <p>A caminho!</p>
-          </div>
-        </div>
-        
-        <div class="progress-step" data-step="4">
-          <div class="step-icon">✅</div>
-          <div class="step-info">
-            <h3>Pedido confirmado</h3>
-            <p>Redirecionando...</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="progress-message">
-        <h2 id="progress-title">Aguardando confirmação do estabelecimento</h2>
-        <p id="progress-subtitle">Seu pedido está sendo processado</p>
-      </div>
-    </div>
-  `;
-
-    this.animateProgress(modal);
-  }
-
-  animateProgress(modal) {
-    const steps = modal.querySelectorAll('.progress-step');
-    const progressLine = modal.querySelector('.progress-line');
-    const progressTitle = modal.querySelector('#progress-title');
-    const progressSubtitle = modal.querySelector('#progress-subtitle');
-
-    const messages = [
-      {
-        title: "Aguardando confirmação do estabelecimento",
-        subtitle: "Seu pedido está sendo processado"
-      },
-      {
-        title: "Seu pedido está em preparo",
-        subtitle: "Nossos chefs estão preparando tudo"
-      },
-      {
-        title: "Pedido saiu para entrega",
-        subtitle: "Em breve chegará até você"
-      },
-      {
-        title: "Pedido confirmado com sucesso!",
-        subtitle: "Obrigado por testar o projeto!..."
-      }
-    ];
-
-    let currentStep = 0;
-
-    const interval = setInterval(() => {
-      currentStep++;
-
-      if (currentStep < 4) {
-        // Ativa próximo step
-        steps[currentStep].classList.add('active');
-        steps[currentStep - 1].classList.add('completed');
-
-        // Atualiza linha de progresso
-        progressLine.style.height = `${(currentStep / 3) * 100}%`;
-
-        // Atualiza mensagens
-        progressTitle.textContent = messages[currentStep].title;
-        progressSubtitle.textContent = messages[currentStep].subtitle;
-
-      } else {
-        clearInterval(interval);
-
-        // Após completar, envia pro WhatsApp
-        setTimeout(() => {
-          this.sendToWhatsApp();
-        }, 1500);
-      }
-    }, 3000); // 3 segundos entre cada etapa
-  }
-
-  showOrderProgress(modal) {
-    const content = modal.querySelector('.cart-content');
-
-    content.innerHTML = `
-    <div class="cart-header">
-      <h2>Acompanhando seu Pedido</h2>
-      <button class="close-cart" aria-label="Fechar">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-    
-    <div class="order-progress-container">
-      <div class="progress-timeline">
-        <div class="progress-line"></div>
-        
-        <div class="progress-step active" data-step="1">
-          <div class="step-icon">⏳</div>
-          <div class="step-info">
-            <h3>Aguardando confirmação</h3>
-            <p>Verificando seu pedido...</p>
-          </div>
-        </div>
-        
-        <div class="progress-step" data-step="2">
-          <div class="step-icon">👨‍🍳</div>
-          <div class="step-info">
-            <h3>Em preparo</h3>
-            <p>Preparando com carinho</p>
-          </div>
-        </div>
-        
-        <div class="progress-step" data-step="3">
-          <div class="step-icon">🛵</div>
-          <div class="step-info">
-            <h3>Saiu para entrega</h3>
-            <p>A caminho!</p>
-          </div>
-        </div>
-        
-        <div class="progress-step" data-step="4">
-          <div class="step-icon">✅</div>
-          <div class="step-info">
-            <h3>Pedido confirmado</h3>
-            <p>Redirecionando...</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="progress-message">
-        <h2 id="progress-title">Aguardando confirmação do estabelecimento</h2>
-        <p id="progress-subtitle">Seu pedido está sendo processado</p>
-      </div>
-    </div>
-  `;
-    // Adicione estas linhas logo após content.innerHTML = `...`;
-
-    // Bind do botão fechar
-    const closeBtn = modal.querySelector('.close-cart');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        if (confirm('Deseja cancelar o acompanhamento do pedido?')) {
-          this.closeModal(modal);
-        }
-      });
-    }
-    this.animateProgress(modal);
-  }
-
-  animateProgress(modal) {
-    const steps = modal.querySelectorAll('.progress-step');
-    const progressLine = modal.querySelector('.progress-line');
-    const progressTitle = modal.querySelector('#progress-title');
-    const progressSubtitle = modal.querySelector('#progress-subtitle');
-
-    const messages = [
-      {
-        title: "Aguardando confirmação do estabelecimento",
-        subtitle: "Seu pedido está sendo processado"
-      },
-      {
-        title: "Seu pedido está em preparo",
-        subtitle: "Nossos chefs estão preparando tudo"
-      },
-      {
-        title: "Pedido saiu para entrega",
-        subtitle: "Em breve chegará até você"
-      },
-      {
-        title: "Pedido confirmado com sucesso!",
-        subtitle: "Obrigado por testar o projeto!"
-      }
-    ];
-
-    let currentStep = 0;
-
-    const interval = setInterval(() => {
-      currentStep++;
-
-      if (currentStep < 4) {
-        // Ativa próximo step
-        steps[currentStep].classList.add('active');
-        steps[currentStep - 1].classList.add('completed');
-
-        // Atualiza linha de progresso
-        progressLine.style.height = `${(currentStep / 3) * 100}%`;
-
-        // Atualiza mensagens
-        progressTitle.textContent = messages[currentStep].title;
-        progressSubtitle.textContent = messages[currentStep].subtitle;
-
-      } else {
-        clearInterval(interval);
-
-        // Após completar, envia pro WhatsApp
-        setTimeout(() => {
-          this.sendToWhatsApp();
-        }, 1500);
-      }
-    }, 3000); // 3 segundos entre cada etapa
-  }
-
   sendToWhatsApp() {
-    const data = this.pedidoData;
+    const data = this.state.pedidoData;
 
     let msg = `*PEDIDO*\n\n`;
     msg += `Nome: ${data.nome}\n`;
@@ -787,20 +485,8 @@ class CartManager {
     window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`);
 
     this.clearCart();
-    window.location.reload(); // Recarrega página
-  }
-
-  formatOrder() {
-    const items = this.items.map(item => {
-      let text = `${item.quantity}x ${item.name} - R$ ${(item.price * item.quantity).toFixed(2)}`;
-      if (item.notes) text += `\n   Obs: ${item.notes}`;
-      return text;
-    }).join('\n');
-
-    const subtotal = this.getSubtotal();
-    const total = subtotal + this.deliveryFee;
-
-    return `*NOVO PEDIDO*\n\n${items}\n\nSubtotal: R$ ${subtotal.toFixed(2)}\nEntrega: R$ ${this.deliveryFee.toFixed(2)}\n*Total: R$ ${total.toFixed(2)}*`;
+    const modal = document.querySelector('.cart-detail-modal');
+    if (modal) this.closeModal(modal);
   }
 
   getSubtotal() {
