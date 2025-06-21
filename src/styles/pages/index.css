@@ -373,39 +373,6 @@ html {
   }
 }
 
-/* Footer */
-.footer {
-  background: #ff9800;
-  color: #fff;
-  font-family: var(--font-footer);
-  margin-top: 6rem;
-  padding: 20px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.footer h2 {
-  font-size: 1rem;
-  margin-bottom: 10px;
-}
-
-.footer-social a {
-  color: var(--color-background);
-  font-size: 1rem;
-  margin: 0 10px;
-  text-decoration: none;
-  transition: opacity 0.3s;
-}
-
-.footer-social a:hover {
-  opacity: 0.7;
-}
-
-.footer-legal {
-  font-size: 1rem;
-  margin-top: 10px;
-}
-
 /* Responsiveness */
 @media screen and (max-width: 890px) {
   .drinks-item-container {
@@ -515,12 +482,6 @@ html {
   .hero-section {
     height: auto;
     padding: 10px;
-  }
-
-  .footer {
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
   }
 }
 

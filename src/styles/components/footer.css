@@ -1,0 +1,238 @@
+/* Footer Profissional */
+.footer {
+  background: #1a1a1a;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin-top: 80px;
+  overflow: hidden;
+}
+
+/* Container para largura máxima */
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Seção principal */
+.footer-main {
+  background: #1a1a1a;
+  padding: 60px 0 40px;
+  border-bottom: 1px solid #333;
+}
+
+.footer-main .footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+/* Colunas */
+.footer-column h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-column h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--color-primary);
+}
+
+.footer-column p {
+  color: #b3b3b3;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+.footer-column strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Horários */
+.footer-hours {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.footer-hours p {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+/* Pagamento */
+.footer-payment {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.footer-payment p:last-child {
+  color: #ffc107;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+/* Social Icons */
+.footer-social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.footer-social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.footer-social-icons a:hover {
+  background: var(--color-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(192, 57, 43, 0.3);
+}
+
+/* Seção Developer */
+.footer-developer {
+  background: #0f0f0f;
+  padding: 30px 0;
+  border-bottom: 1px solid #222;
+}
+
+.footer-developer .footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.developer-info p {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.developer-info a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  border-bottom: 1px dotted #555;
+}
+
+.developer-info a:hover {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.developer-tech {
+  color: #666 !important;
+  font-size: 13px !important;
+  font-family: "Courier New", monospace;
+}
+
+.developer-links {
+  display: flex;
+  gap: 15px;
+}
+
+.developer-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #888;
+  transition: all 0.3s ease;
+}
+
+.developer-links a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-primary);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* Copyright */
+.footer-bottom {
+  background: #000;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: #666;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .footer-main {
+    padding: 40px 0 30px;
+  }
+
+  .footer-main .footer-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer-column h3 {
+    font-size: 18px;
+  }
+
+  .footer-developer .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .developer-info {
+    order: 2;
+  }
+
+  .developer-links {
+    order: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    margin-top: 50px;
+  }
+
+  .footer-column p {
+    font-size: 14px;
+  }
+
+  .footer-social-icons a {
+    width: 38px;
+    height: 38px;
+  }
+
+  .footer-social-icons svg {
+    width: 18px;
+    height: 18px;
+  }
+}

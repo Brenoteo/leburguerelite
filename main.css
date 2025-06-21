@@ -2,5 +2,6 @@
 @import url(src/styles/base/variable.css);
 @import url(src/styles/components/cart.css);
 @import url(src/styles/components/checkout.css);
+@import url(src/styles/components/footer.css);
 @import url(src/styles/pages/contact.css);
 @import url(src/styles/pages/index.css);
