@@ -98,22 +98,22 @@
 }
 
 .cart-detail-modal.show {
-  background-color: rgba(0, 0, 0, 0.9); /* Mais escuro */
+  background-color: rgba(0, 0, 0, 0.9);
   opacity: 1;
 }
 
 .cart-content {
   background: white;
-  border-radius: 0; /* Sem bordas arredondadas */
-  box-shadow: none; /* Remove sombra */
+  border-radius: 0;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Altura total */
-  max-height: none; /* Remove limite */
-  max-width: none; /* Remove limite */
-  transform: translateX(-100%); /* Anima da esquerda */
+  height: 100vh;
+  max-height: none;
+  max-width: none;
+  transform: translateX(-100%);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  width: 100vw; /* Largura total */
+  width: 100vw;
 }
 
 .cart-detail-modal.show .cart-content {
@@ -121,14 +121,14 @@
 }
 
 .cart-detail-modal.closing .cart-content {
-  transform: translateX(100%); /* Sai pela direita */
+  transform: translateX(100%);
 }
 
 /* Container central para o conteúdo */
 .cart-items {
   flex: 1;
-  margin: 0 auto; /* Centraliza */
-  max-width: 1200px; /* Limita largura do conteúdo */
+  margin: 0 auto;
+  max-width: 1200px;
   overflow-y: auto;
   padding: 20px;
   width: 100%;
@@ -137,8 +137,8 @@
 .cart-footer {
   background: #fafafa;
   border-top: 2px solid #f0f0f0;
-  margin: 0 auto; /* Centraliza */
-  max-width: 1200px; /* Limita largura */
+  margin: 0 auto;
+  max-width: 1200px;
   padding: 24px;
   width: 100%;
 }
@@ -149,8 +149,8 @@
   border-bottom: 2px solid #f0f0f0;
   display: flex;
   justify-content: space-between;
-  margin: 0 auto; /* Centraliza */
-  max-width: 1200px; /* Limita largura */
+  margin: 0 auto;
+  max-width: 1200px;
   padding: 24px;
   width: 100%;
 }
@@ -172,7 +172,7 @@
   display: flex;
   gap: 20px;
   margin-bottom: 16px;
-  min-height: 100px; /* Altura mínima garantida */
+  min-height: 100px;
   padding: 24px;
   transition: all 0.2s;
 }
@@ -182,7 +182,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   height: 80px;
-  min-width: 80px; /* Não deixa comprimir */
+  min-width: 80px;
   object-fit: cover;
   width: 80px;
 }
@@ -192,7 +192,7 @@
   flex: 1;
   flex-direction: column;
   gap: 8px;
-  min-width: 0; /* Permite truncar texto se necessário */
+  min-width: 0;
 }
 
 .item-name {
@@ -253,7 +253,7 @@
   color: var(--color-primary);
   font-size: 18px;
   font-weight: bold;
-  margin-left: 20px; /* Espaço extra */
+  margin-left: 20px;
   text-align: right;
   white-space: nowrap;
 }
@@ -264,7 +264,7 @@
   margin: 0 auto;
   max-width: 1200px;
   overflow-y: auto;
-  padding: 40px 20px; /* Mais padding vertical */
+  padding: 40px 20px;
   width: 100%;
 }
 
@@ -716,36 +716,36 @@
 
 /* Progress Timeline */
 .order-progress-container {
-  padding: 40px;
   min-height: 500px;
+  padding: 40px;
 }
 
 .progress-timeline {
-  position: relative;
   margin: 0 auto 60px;
   max-width: 400px;
+  position: relative;
 }
 
 .progress-line {
-  position: absolute;
-  left: 40px;
-  top: 40px;
-  width: 4px;
-  height: 0%;
   background: var(--color-primary);
+  height: 0%;
+  left: 40px;
+  position: absolute;
+  top: 40px;
   transition: height 0.5s ease;
+  width: 4px;
   z-index: 1;
 }
 
 .progress-step {
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 20px;
   margin-bottom: 50px;
-  position: relative;
-  z-index: 2;
   opacity: 0.3;
+  position: relative;
   transition: all 0.3s ease;
+  z-index: 2;
 }
 
 .progress-step.active {
@@ -759,41 +759,41 @@
 }
 
 .step-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: #f0f0f0;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 32px;
+  background: #f0f0f0;
+  border-radius: 50%;
+  display: flex;
   flex-shrink: 0;
+  font-size: 32px;
+  height: 80px;
+  justify-content: center;
   transition: all 0.3s ease;
+  width: 80px;
 }
 
 .progress-step.active .step-icon {
   background: var(--color-primary);
-  transform: scale(1.1);
   box-shadow: 0 4px 15px rgba(192, 57, 43, 0.3);
+  transform: scale(1.1);
 }
 
 .step-info h3 {
+  color: #333;
   font-size: 18px;
   margin-bottom: 4px;
-  color: #333;
 }
 
 .step-info p {
-  font-size: 14px;
   color: #666;
+  font-size: 14px;
 }
 
 .progress-message {
-  text-align: center;
-  padding: 30px;
   background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 100%);
   border-radius: 12px;
   margin-top: 40px;
+  padding: 30px;
+  text-align: center;
 }
 
 .progress-message h2 {
@@ -835,9 +835,9 @@
   }
 
   .step-icon {
-    width: 60px;
-    height: 60px;
     font-size: 24px;
+    height: 60px;
+    width: 60px;
   }
 
   .step-info h3 {
