@@ -1,0 +1,113 @@
+/* Placeholder base para imagens */
+img[data-src] {
+  animation: shimmer 1.5s infinite linear;
+  background-color: #f4f4f4;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjOTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Q2FycmVnYW5kby4uLjwvdGV4dD48L3N2Zz4=');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Estado de loading */
+img.lazy-loading {
+  filter: blur(1px);
+  opacity: 0.5;
+}
+
+/* Estado carregado */
+img.lazy-loaded {
+  background-image: none;
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* Estado de erro */
+img.lazy-error {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjZTYzOTQ2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+RXJybyA8L3RleHQ+PC9zdmc+');
+  opacity: 0.8;
+}
+
+/* Animação de shimmer para loading */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+/* Efeito shimmer no placeholder */
+img[data-src]:not(.lazy-loaded):not(.lazy-error) {
+  animation: shimmer 1.5s infinite linear;
+  background: linear-gradient(
+    90deg,
+    #f4f4f4 0px,
+    #e8e8e8 40px,
+    #f4f4f4 80px
+  );
+  background-size: 200px 100%;
+}
+
+/* Otimizações para imagens específicas do menu */
+.menu-item img[data-src],
+.sides-item img[data-src],
+.drinks-item img[data-src],
+.sauces-item img[data-src] {
+  background-size: 60px 60px;
+  border: 2px solid #ddd;
+  border-radius: 10%;
+}
+
+/* Logo não deve ter lazy loading (carrega imediatamente) */
+.logo img {
+  animation: none !important;
+  background-image: none !important;
+}
+
+/* Ícones de redes sociais não precisam de lazy loading */
+.contact-icons img,
+.footer-social-icons img {
+  animation: none !important;
+  background-image: none !important;
+}
+
+/* Responsividade para placeholders */
+@media screen and (max-width: 768px) {
+  img[data-src] {
+    background-size: 40px 40px;
+  }
+  
+  .menu-item img[data-src],
+  .sides-item img[data-src],
+  .drinks-item img[data-src],
+  .sauces-item img[data-src] {
+    background-size: 50px 50px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  img[data-src] {
+    background-size: 30px 30px;
+  }
+  
+  .menu-item img[data-src],
+  .sides-item img[data-src],
+  .drinks-item img[data-src],
+  .sauces-item img[data-src] {
+    background-size: 40px 40px;
+  }
+}
+
+/* Melhoria de performance para animações */
+@media (prefers-reduced-motion: reduce) {
+  img[data-src] {
+    animation: none !important;
+  }
+  
+  img.lazy-loaded {
+    transition: none !important;
+  }
+} 

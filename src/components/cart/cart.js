@@ -53,7 +53,8 @@ class CartManager {
   addItem(element) {
     const name = element.dataset.name;
     const price = parseFloat(element.dataset.price);
-    const image = element.querySelector('img')?.src || '';
+    const imgElement = element.querySelector('img');
+    const image = imgElement?.src || imgElement?.dataset.src || '';
 
     if (!name || isNaN(price)) return;
 

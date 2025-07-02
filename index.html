@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="main.css">
   <script src="src/scripts/navigation.js" defer></script>
   <script src="src/components/cart/cart.js" defer></script>
+  <script src="src/scripts/lazy-loading.js" defer></script>
   <title>The Burguer | Qualidade e Sabor Inigualáveis.</title>
 
   <!-- Modal de feedback do carrinho -->
@@ -16,6 +17,12 @@
       <p class="modal-text"></p>
     </div>
   </div>
+
+  <!-- Tags meta para SEO -->
+  <meta name="description" content="The Burguer - Os melhores hambúrgueres artesanais da cidade">
+  <meta name="keywords" content="hambúrguer, delivery, fast food, artesanal">
+  <meta property="og:title" content="The Burguer">
+  <meta property="og:description" content="Descubra os melhores hambúrgueres da cidade">
 
 <body>
   <!-- Header & Navbar -->
@@ -88,7 +95,7 @@
 
     <div class="menu-item-container">
       <div class="menu-item" id="h1" data-name="Bacon Fusion" data-price="38.90">
-        <img src="src/assets/img/burguers/bacon-maple-bliss.webp" alt="Hambúrguer Bacon & Maple Bliss">
+        <img data-src="src/assets/img/burguers/bacon-maple-bliss.webp" alt="Hambúrguer Bacon & Maple Bliss">
         <h3>Bacon Fusion</h3>
         <p class="price">R$ 38,90</p>
         <p class="description">200g de picanha suculenta com bacon crocante, cheddar cremoso, cebolas caramelizadas e
@@ -97,7 +104,7 @@
       </div>
 
       <div class="menu-item" id="h2" data-name="Cordeiro Imperial" data-price="39.90">
-        <img src="src/assets/img/burguers/cordeiro-marroquino.webp" alt="Cordeiro Marroquino">
+        <img data-src="src/assets/img/burguers/cordeiro-marroquino.webp" alt="Cordeiro Marroquino">
         <h3>Cordeiro Imperial</h3>
         <p class="price">R$ 39,90</p>
         <p class="description">200g de cordeiro com especiarias marroquinas, queijo feta grelhado, salada e molho
@@ -107,7 +114,7 @@
       </div>
 
       <div class="menu-item" id="h3" data-name="Fusão BBQ Tropical" data-price="41.90">
-        <img src="src/assets/img/burguers/bbq-tropical-smash.webp" alt="BBQ Tropical Smash">
+        <img data-src="src/assets/img/burguers/bbq-tropical-smash.webp" alt="BBQ Tropical Smash">
         <h3>Fusão BBQ Tropical</h3>
         <p class="price">R$ 41,90</p>
         <p class="description">220g de costela suína desfiada, abacaxi caramelizado, queijo gouda defumado e molho
@@ -116,7 +123,7 @@
       </div>
 
       <div class="menu-item" id="h4" data-name="Fraldinha Platinum" data-price="42.90">
-        <img src="src/assets/img/burguers/delicia-nacional.webp" alt="Truffle Mushroom Indulgence">
+        <img data-src="src/assets/img/burguers/delicia-nacional.webp" alt="Truffle Mushroom Indulgence">
         <h3>Fraldinha Platinum</h3>
         <p class="price">R$ 42,90</p>
         <p class="description">200g de fraldinha suculenta, queijo prato derretido, ovo frito, bacon, alface, tomate e
@@ -125,7 +132,7 @@
       </div>
 
       <div class="menu-item" id="h5" data-name="Mango Fury" data-price="43.90">
-        <img src="src/assets/img/burguers/mango-habanero-fiesta.webp" alt="Mango Habanero Fiesta">
+        <img data-src="src/assets/img/burguers/mango-habanero-fiesta.webp" alt="Mango Habanero Fiesta">
         <h3>Mango Fury</h3>
         <p class="price">R$ 43,90</p>
         <p class="description">200g de patinho, bacon crocante, queijo pepper jack, salada, chutney de manga picante
@@ -134,7 +141,7 @@
       </div>
 
       <div class="menu-item" id="h6" data-name="Turkey Flame" data-price="41.90">
-        <img src="src/assets/img/burguers/sweet-savory-apple-delight.webp" alt="Sweet & Savory Apple Delight">
+        <img data-src="src/assets/img/burguers/sweet-savory-apple-delight.webp" alt="Sweet & Savory Apple Delight">
         <h3>Turkey Flame</h3>
         <p class="price">R$ 41,90</p>
         <p class="description">200g de peru temperado com ervas finas, camembert derretido, maçãs caramelizadas na
@@ -143,7 +150,7 @@
       </div>
 
       <div class="menu-item" id="h7" data-name="Clássico do Chef" data-price="46.90">
-        <img src="src/assets/img/burguers/o-preferido-da-casa.webp" alt="O Preferido da Casa">
+        <img data-src="src/assets/img/burguers/o-preferido-da-casa.webp" alt="O Preferido da Casa">
         <h3>Clássico do Chef</h3>
         <p class="price">R$ 46,90</p>
         <p class="description">200g de picanha grelhado, bacon, salada, queijo provolone, cebolas empanadas e
@@ -153,7 +160,7 @@
       </div>
 
       <div class="menu-item" id="h8" data-name="Majestade Mignon" data-price="48.90">
-        <img src="src/assets/img/burguers/magnifico-mignon.webp" alt="O Preferido da Casa">
+        <img data-src="src/assets/img/burguers/magnifico-mignon.webp" alt="O Preferido da Casa">
         <h3>Majestade Mignon</h3>
         <p class="price">R$ 48,90</p>
         <p class="description">200g de filet mignon grelhado, onion rings crocantes, queijo coalho derretido, molho
@@ -169,7 +176,7 @@
 
     <div class="sides-item-container">
       <div class="sides-item" id="p1" data-name="Batata Frita" data-price="15.90">
-        <img src="src/assets/img/potatoes/batatas-fritas-estilo-cajun.webp" alt="Batatas Fritas ao Estilo Cajun">
+        <img data-src="src/assets/img/potatoes/batatas-fritas-estilo-cajun.webp" alt="Batatas Fritas ao Estilo Cajun">
         <h3>Batata Frita</h3>
         <p class="price">R$ 15,90</p>
         <p class="description">Batatas fritas crocantes com tempero cajun para um toque picante.</p>
@@ -177,7 +184,7 @@
       </div>
 
       <div class="sides-item" id="p2" data-name="Batata Rústica" data-price="16.90">
-        <img src="src/assets/img/potatoes/batatas-rusticas-assadas-alecrim-alho.webp"
+        <img data-src="src/assets/img/potatoes/batatas-rusticas-assadas-alecrim-alho.webp"
           alt="Batatas Rústicas Assadas com Alecrim e Alho">
         <h3>Batata Rústica</h3>
         <p class="price">R$ 16,90</p>
@@ -187,7 +194,7 @@
       </div>
 
       <div class="sides-item" id="p3" data-name="Onion Rings Recheadas" data-price="18.90">
-        <img src="src/assets/img/potatoes/onion-rings-recheadas.webp"
+        <img data-src="src/assets/img/potatoes/onion-rings-recheadas.webp"
           alt="Onion Rings Recheadas com Queijo Cheddar e Ervas">
         <h3>Onion Rings Recheadas</h3>
         <p class="price">R$ 18,90</p>
@@ -197,7 +204,7 @@
       </div>
 
       <div class="sides-item" id="p4" data-name="Batata Doce Frita" data-price="19.90">
-        <img src="src/assets/img/potatoes/batatas-fritas-batata-doce-molho-agridoce-cream-cheese.webp"
+        <img data-src="src/assets/img/potatoes/batatas-fritas-batata-doce-molho-agridoce-cream-cheese.webp"
           alt="Batatas Fritas de Batata Doce com Molho Doce-Picante de Abacaxi">
         <h3>Batata Doce Frita</h3>
         <p class="price">R$ 19,90</p>
@@ -214,7 +221,7 @@
 
     <div class="drinks-item-container">
       <div class="drinks-item" id="d1" data-name="Abacaxi Hortelã" data-price="12.90">
-        <img src="src/assets/img/drinks/suco-refrescante-abacaxi-hortela-agua-coco.webp"
+        <img data-src="src/assets/img/drinks/suco-refrescante-abacaxi-hortela-agua-coco.webp"
           alt="Suco Refrescante de Abacaxi e Hortelã com Água de Coco">
         <h3>Abacaxi Hortelã</h3>
         <p class="price">R$ 12,90</p>
@@ -224,7 +231,7 @@
       </div>
 
       <div class="drinks-item" id="d2" data-name="Melancia Cítrica" data-price="11.90">
-        <img src="src/assets/img/drinks/suco-gourmet-melancia-limao-siciliano-manjericao.webp"
+        <img data-src="src/assets/img/drinks/suco-gourmet-melancia-limao-siciliano-manjericao.webp"
           alt="Suco Gourmet de Melancia com Limão Siciliano e Manjericão">
         <h3>Melancia Cítrica</h3>
         <p class="price">R$ 11,90</p>
@@ -234,7 +241,7 @@
       </div>
 
       <div class="drinks-item" id="d3" data-name="Explosão Laranja" data-price="14.90">
-        <img src="src/assets/img/drinks/suco-premium-laranja-sanguinea-cenoura-gengibre.webp"
+        <img data-src="src/assets/img/drinks/suco-premium-laranja-sanguinea-cenoura-gengibre.webp"
           alt="Suco Premium de Laranja Sanguínea com Cenoura e Gengibre">
         <h3>Explosão Laranja</h3>
         <p class="price">R$ 14,90</p>
@@ -251,7 +258,7 @@
 
     <div class="sauces-item-container">
       <div class="sauces-item" id="s1" data-name="Exclusivo do Chef" data-price="7.90">
-        <img src="src/assets/img/sauces/melhor-molho-secreto-alho-maionese.webp"
+        <img data-src="src/assets/img/sauces/melhor-molho-secreto-alho-maionese.webp"
           alt="Molho Agridoce de Laranja com Gengibre">
         <h3>Exclusivo do Chef</h3>
         <p class="price">R$ 7,90</p>
@@ -260,7 +267,7 @@
       </div>
 
       <div class="sauces-item" id="s2" data-name="Molho de Cheddar" data-price="6.90">
-        <img src="src/assets/img/sauces/molho-para-propaganda.webp" alt="Molho Trufado de Queijo Brie">
+        <img data-src="src/assets/img/sauces/molho-para-propaganda.webp" alt="Molho Trufado de Queijo Brie">
         <h3>Molho de Cheddar</h3>
         <p class="price">R$ 6,90</p>
         <p class="description">A combinação definitiva do molho secreto com cheddar derretido.</p>
@@ -268,7 +275,7 @@
       </div>
 
       <div class="sauces-item" id="s3" data-name="Creme de Ervas" data-price="5.90">
-        <img src="src/assets/img/sauces/molho-caseiro-cremosoqueijo-brie-derretido.webp"
+        <img data-src="src/assets/img/sauces/molho-caseiro-cremosoqueijo-brie-derretido.webp"
           alt="Molho Agridoce de Laranja com Gengibre">
         <h3>Creme de Ervas</h3>
         <p class="price">R$ 5,90</p>
