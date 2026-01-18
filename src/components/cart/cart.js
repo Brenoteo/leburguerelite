@@ -482,7 +482,7 @@ class CartManager {
 
     msg += `\n*TOTAL: R$ ${(this.getSubtotal() + this.deliveryFee).toFixed(2)}*`;
 
-    const numero = '5511999999999'; // NÚMERO DA LOJA
+    const numero = '5531972586559'; // NÚMERO DA LOJA
     window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`);
 
     this.clearCart();
