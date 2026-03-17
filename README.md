@@ -1,4 +1,4 @@
-# 🍔 LeBurgerElite - Hamburgueria Artesanal
+# 🍔 TheBurguer - Hamburgueria Artesanal
 
 <div align="center">
   <img src="src/assets/img/logo/logo.jpeg" alt="The Burguer Logo" width="200">
@@ -38,7 +38,7 @@
 
 ## 🎯 Sobre o Projeto
 
-O **LeBurgerElite** é um site moderno e responsivo para uma hamburgueria artesanal fictícia. O projeto demonstra habilidades avançadas em desenvolvimento web front-end, com foco em performance, acessibilidade e experiência do usuário.
+O **TheBurguer** é um site moderno e responsivo para uma hamburgueria artesanal fictícia. O projeto demonstra habilidades avançadas em desenvolvimento web front-end, com foco em performance, acessibilidade e experiência do usuário.
 
 ### 🎨 Características Principais
 
@@ -105,7 +105,7 @@ O **LeBurgerElite** é um site moderno e responsivo para uma hamburgueria artesa
 ## 📁 Estrutura do Projeto
 
 ```
-leburguerelite/
+theburguer/
 ├── 📄 index.html                 # Página principal
 ├── 📄 main.css                   # CSS principal
 ├── 📄 README.md                  # Documentação
@@ -263,8 +263,8 @@ SEO: 100/100
 
 1. **Clone o repositório**
 ```bash
-git clone https://github.com/seu-usuario/leburguerelite.git
-cd leburguerelite
+git clone https://github.com/seu-usuario/theburguer.git
+cd theburguer
 ```
 
 2. **Abra o projeto**
@@ -420,7 +420,7 @@ copies or substantial portions of the Software.
 
 <div align="center">
   
-  ### **🎉 Obrigado por visitar o LeBurgerElite!**
+  ### **🎉 Obrigado por visitar o TheBurguer!**
   
   Se este projeto te ajudou, considere dar uma ⭐ no repositório!
   
